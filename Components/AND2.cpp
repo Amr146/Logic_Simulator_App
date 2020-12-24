@@ -1,5 +1,6 @@
 #include "AND2.h"
-
+#include <iostream>
+using namespace std;
 AND2::AND2(const GraphicsInfo &r_GfxInfo, int r_FanOut):Gate(2, r_FanOut)
 {
 	m_GfxInfo.x1 = r_GfxInfo.x1;
@@ -13,7 +14,10 @@ void AND2::Operate()
 {
 	//caclulate the output status as the ANDing of the two input pins
 
-	//Add you code here
+	if (m_InputPins[0].getStatus() && m_InputPins[1].getStatus())
+		m_OutputPin.setStatus(HIGH);
+	else
+		m_OutputPin.setStatus(LOW);
 }
 
 

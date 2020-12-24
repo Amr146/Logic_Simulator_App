@@ -1,7 +1,11 @@
 #include "ApplicationManager.h"
 #include "Actions\AddANDgate2.h"
-
-
+#include "Next.h"
+#include "Previous.h"
+#include "SimulateMode.h"
+#include "DesignMode.h"
+#include "DisplayCompBar.h"
+#include "CloseCompBar.h"
 ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
@@ -39,7 +43,30 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case ADD_CONNECTION:
 			//TODO: Create AddConection Action here
 			break;
+
+		case COMP_BAR:
+			pAct = new DisplayCompBar(this);
+			break;
+
+		case CLOSE_COMP_BAR:
+			pAct = new CloseCompBar(this);
+			break;
+
+		case NEXT:
+			pAct = new Next(this);
+			break;
 	
+		case PREVIOUS:
+			pAct = new Previous(this);
+			break;
+
+		case SIM_MODE:
+			pAct = new SimulateMode(this);
+			break;
+
+		case DSN_MODE:
+			pAct = new DesignMode(this);
+			break;
 
 		case EXIT:
 			///TODO: create ExitAction here
@@ -58,6 +85,15 @@ void ApplicationManager::UpdateInterface()
 {
 		for(int i=0; i<CompCount; i++)
 			CompList[i]->Draw(OutputInterface);
+
+}
+
+////////////////////////////////////////////////////////////////////
+
+void ApplicationManager::Simulate()
+{
+	for (int i = 0; i < CompCount; i++)
+		CompList[i]->Operate();
 
 }
 

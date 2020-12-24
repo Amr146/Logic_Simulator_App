@@ -6,6 +6,7 @@ Output::Output()
 
 	UI.AppMode = DESIGN;	//Design Mode is the startup mode
 	UI.gatesGroup = 1;
+	UI.displayCompBar = false;
 
 	//Initilaize interface colors
 	UI.DrawColor = BLACK;
@@ -93,55 +94,73 @@ void Output::CreateDesignToolBar() const
 	//You can draw the tool bar icons in any way you want.
 
 	//First prepare List of images for each menu item
-	string MenuItemImages[ITM_DSN_CNT];
-	MenuItemImages[ITM_Buff] = "images\\Menu\\Menu_Buff.jpg";
-	MenuItemImages[ITM_INV] = "images\\Menu\\Menu_INV.jpg";
-	MenuItemImages[ITM_AND2] = "images\\Menu\\Menu_AND2.jpg";
-	MenuItemImages[ITM_OR2]  = "images\\Menu\\Menu_OR2.jpg";
-	MenuItemImages[ITM_NAND2]  = "images\\Menu\\Menu_NAND2.jpg";
-	MenuItemImages[ITM_NOR2]  = "images\\Menu\\Menu_NOR2.jpg";
-	MenuItemImages[ITM_NEXT] = "images\\Menu\\Menu_Next.jpg";
-	MenuItemImages[ITM_PREVIOUS] = "images\\Menu\\Menu_Previous.jpg";
-	MenuItemImages[ITM_XOR2]  = "images\\Menu\\Menu_XOR2.jpg";
-	MenuItemImages[ITM_XNOR2]  = "images\\Menu\\Menu_XNOR2.jpg";
-	MenuItemImages[ITM_AND3]  = "images\\Menu\\Menu_AND3.jpg";
-	MenuItemImages[ITM_NOR3]  = "images\\Menu\\Menu_NOR3.jpg";
-	MenuItemImages[ITM_XOR3]  = "images\\Menu\\Menu_XOR3.jpg";
-	MenuItemImages[ITM_Switch]  = "images\\Menu\\Menu_Switch.jpg";
-	MenuItemImages[ITM_LED]  = "images\\Menu\\Menu_LED.jpg";
-	MenuItemImages[ITM_CONNECTION]  = "images\\Menu\\Menu_CONNECTION.jpg";
-	MenuItemImages[ITM_SIM_MODE] = "images\\Menu\\Menu_SIM_MODE.jpg";
-	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
+	string DesignMenuItemImages[ITM_DSN_CNT];
+	DesignMenuItemImages[ITM_ADD] = "images\\Menu\\Menu_ADD.jpg";
+	DesignMenuItemImages[ITM_CONNECTION] = "images\\Menu\\Menu_CONNECTION.jpg";
+	DesignMenuItemImages[ITM_SELECT] = "images\\Menu\\Menu_Select.jpg";
+	DesignMenuItemImages[ITM_LABEL] = "images\\Menu\\Menu_Label.jpg";
+	DesignMenuItemImages[ITM_EDIT] = "images\\Menu\\Menu_Edit.jpg";
+	DesignMenuItemImages[ITM_DELETE]  = "images\\Menu\\Menu_DELETE.jpg";
+	DesignMenuItemImages[ITM_MOVE]  = "images\\Menu\\Menu_Move.jpg";
+	DesignMenuItemImages[ITM_CLIPBOARD] = "images\\Menu\\Menu_Clipboard.jpg";
+	DesignMenuItemImages[ITM_SIM_MODE] = "images\\Menu\\Menu_SIM_MODE.jpg";
+	DesignMenuItemImages[ITM_SAVE] = "images\\Menu\\Menu_SAVE.jpg";
+	DesignMenuItemImages[ITM_LOAD] = "images\\Menu\\Menu_LOAD.jpg";
+	DesignMenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 
 	//TODO: Prepare image for each menu item and add it to the list
 
-	
+	string CompMenuItemImages[ITM_CMP_CNT];
+	CompMenuItemImages[ITM_Buff] = "images\\Menu\\Menu_Buff.jpg";
+	CompMenuItemImages[ITM_INV] = "images\\Menu\\Menu_INV.jpg";
+	CompMenuItemImages[ITM_AND2] = "images\\Menu\\Menu_AND2.jpg";
+	CompMenuItemImages[ITM_OR2] = "images\\Menu\\Menu_OR2.jpg";
+	CompMenuItemImages[ITM_NAND2] = "images\\Menu\\Menu_NAND2.jpg";
+	CompMenuItemImages[ITM_NOR2] = "images\\Menu\\Menu_NOR2.jpg";
+	CompMenuItemImages[ITM_XOR2] = "images\\Menu\\Menu_XOR2.jpg";
+	CompMenuItemImages[ITM_XNOR2] = "images\\Menu\\Menu_XNOR2.jpg";
+	CompMenuItemImages[ITM_NEXT] = "images\\Menu\\Menu_Next.jpg";
+	CompMenuItemImages[ITM_PREVIOUS] = "images\\Menu\\Menu_Previous.jpg";
+	CompMenuItemImages[ITM_AND3] = "images\\Menu\\Menu_AND3.jpg";
+	CompMenuItemImages[ITM_NOR3] = "images\\Menu\\Menu_NOR3.jpg";
+	CompMenuItemImages[ITM_XOR3] = "images\\Menu\\Menu_XOR3.jpg";
+	CompMenuItemImages[ITM_Switch] = "images\\Menu\\Menu_Switch.jpg";
+	CompMenuItemImages[ITM_LED] = "images\\Menu\\Menu_LED.jpg";
+	CompMenuItemImages[ITM_CLOSE] = "images\\Menu\\Menu_Close.jpg";
 
 	//Draw menu item one image at a time
-	if (UI.gatesGroup == 1)
-	{
-		for (int i = 0; i < 6; i++)
-			pWind->DrawImage(MenuItemImages[i], i * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
-		pWind->SetPen(RED, 3);
-		pWind->DrawLine(UI.ToolItemWidth * 6, UI.ToolBarHeight, UI.ToolItemWidth * 6, 0);
-		pWind->DrawImage(MenuItemImages[6], 6 * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
+	if(UI.displayCompBar)
+	{ 
+		if (UI.gatesGroup == 1)
+		{
+			for (int i = 0; i < 8; i++)
+				pWind->DrawImage(CompMenuItemImages[i], i * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
+			pWind->SetPen(RED, 3);
+			pWind->DrawLine(UI.ToolItemWidth * ITM_NEXT, UI.ToolBarHeight, UI.ToolItemWidth * ITM_NEXT, 0);
+			pWind->DrawImage(CompMenuItemImages[ITM_NEXT], ITM_NEXT * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
+		}
+		else
+		{
+			pWind->DrawImage(CompMenuItemImages[ITM_PREVIOUS], 0, 0, UI.ToolItemWidth, UI.ToolBarHeight);
+			pWind->SetPen(RED, 3);
+			pWind->DrawLine(UI.ToolItemWidth, UI.ToolBarHeight, UI.ToolItemWidth, 0);
+			for (int i = 1; (i + ITM_PREVIOUS) < ITM_Switch; i++)
+				pWind->DrawImage(CompMenuItemImages[i + ITM_PREVIOUS], i * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
+			pWind->SetPen(WHITE, 1);
+			pWind->SetBrush(WHITE);
+			pWind->DrawRectangle(4 * UI.ToolItemWidth, 0, ITM_Switch * UI.ToolItemWidth, UI.ToolBarHeight);
+		}
+		pWind->SetPen(RED, 6);
+		pWind->DrawLine(UI.ToolItemWidth * 9, UI.ToolBarHeight, UI.ToolItemWidth * 9, 0);
+		for (int i = 13; i < ITM_CMP_CNT; i++)
+			pWind->DrawImage(CompMenuItemImages[i], (i - 4) * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
 	}
 	else
 	{
-		pWind->DrawImage(MenuItemImages[7],0, 0, UI.ToolItemWidth, UI.ToolBarHeight);
-		pWind->SetPen(RED, 3);
-		pWind->DrawLine(UI.ToolItemWidth, UI.ToolBarHeight, UI.ToolItemWidth, 0);
-		for (int i = 1; i < 6; i++)
-			pWind->DrawImage(MenuItemImages[i + 7], i * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
-		pWind->SetPen(WHITE, 1);
-		pWind->SetBrush(WHITE);
-		pWind->DrawRectangle(6 * UI.ToolItemWidth, 0, 7 * UI.ToolItemWidth, UI.ToolBarHeight);
+		for (int i = 0; i < ITM_DSN_CNT; i++)
+			pWind->DrawImage(DesignMenuItemImages[i], i * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
+		
 	}
-	pWind->SetPen(RED, 6);
-	pWind->DrawLine(UI.ToolItemWidth * 7, UI.ToolBarHeight, UI.ToolItemWidth * 7, 0);
-	for (int i = 13; i < ITM_DSN_CNT; i++)
-		pWind->DrawImage(MenuItemImages[i], (i-6) * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
-
 
 	//Draw a line under the toolbar
 	pWind->SetPen(RED,3);
@@ -154,17 +173,14 @@ void Output::CreateDesignToolBar() const
 void Output::CreateSimulationToolBar() const
 {
 	UI.AppMode = SIMULATION;	//Simulation Mode
-	string MenuItemImages[ITM_SIM_CNT];
-	MenuItemImages[ITM_SIM] = "images\\Menu\\Menu_SIM_MODE.jpg";
-	MenuItemImages[ITM_DSN_MODE] = "images\\Menu\\Menu_DSN_MODE.jpg";
-	MenuItemImages[ITM_TRUTH] = "images\\Menu\\Menu_TRUTH.jpg";
-	MenuItemImages[ITM_SAVE] = "images\\Menu\\Menu_SAVE.jpg";
-	MenuItemImages[ITM_LOAD] = "images\\Menu\\Menu_LOAD.jpg";
-	MenuItemImages[ITM_DELETE] = "images\\Menu\\Menu_DELETE.jpg";
+	string DesignMenuItemImages[ITM_SIM_CNT];
+	DesignMenuItemImages[ITM_SIM] = "images\\Menu\\Menu_SIM_MODE.jpg";
+	DesignMenuItemImages[ITM_DSN_MODE] = "images\\Menu\\Menu_DSN_MODE.jpg";
+	DesignMenuItemImages[ITM_TRUTH] = "images\\Menu\\Menu_TRUTH.jpg";
 
 
 	for(int i=0; i<ITM_SIM_CNT; i++)
-		pWind->DrawImage(MenuItemImages[i],i*UI.ToolItemWidth,0,UI.ToolItemWidth, UI.ToolBarHeight);
+		pWind->DrawImage(DesignMenuItemImages[i],i*UI.ToolItemWidth,0,UI.ToolItemWidth, UI.ToolBarHeight);
 
 	pWind->SetPen(WHITE, 1);
 	pWind->SetBrush(WHITE);

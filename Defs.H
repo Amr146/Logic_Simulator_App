@@ -45,6 +45,9 @@ enum ActionType
 
 	NEXT,       //display the next gates group
 	PREVIOUS,   //display the previous gates group
+	COMP_BAR,
+	CLOSE_COMP_BAR,
+	CLIPBOARD,
 
 	STATUS_BAR,		//A click on the status bar
 	DSN_TOOL,	//A click on an empty place in the design tool bar
@@ -69,26 +72,17 @@ enum DsgnMenuItem //The items of the design menu (you should add more items)
 {
 	//Note: Items are ordered here as they appear in menu
 	//If you want to change the menu items order, change the order here
-	ITM_Buff,
-	ITM_INV,
-	ITM_AND2,		//AND gate item in menu
-	ITM_OR2,		//OR gate item in menu
-	ITM_NAND2,
-	ITM_NOR2,
-	ITM_NEXT,
-	ITM_PREVIOUS,
-	ITM_XOR2,
-	ITM_XNOR2,
-	ITM_AND3,
-	ITM_NOR3,
-	ITM_XOR3,
-
-	ITM_Switch,
-	ITM_LED,
+	ITM_ADD,
 	ITM_CONNECTION,
-	
+	ITM_SELECT,
+	ITM_LABEL,
+	ITM_EDIT,
+	ITM_DELETE,
+	ITM_MOVE,
+	ITM_CLIPBOARD,
 	ITM_SIM_MODE,
-
+	ITM_SAVE,
+	ITM_LOAD,
 	ITM_EXIT,		//Exit item
 	//TODO: Add more items names here
 	//EDITED
@@ -97,16 +91,35 @@ enum DsgnMenuItem //The items of the design menu (you should add more items)
 	
 };
 
+enum CompMenuItem
+{
+	ITM_Buff,
+	ITM_INV,
+	ITM_AND2,		//AND gate item in menu
+	ITM_OR2,		//OR gate item in menu
+	ITM_NAND2,
+	ITM_NOR2,
+	ITM_XOR2,
+	ITM_XNOR2,
+	ITM_NEXT,
+	ITM_PREVIOUS,
+	ITM_AND3,
+	ITM_NOR3,
+	ITM_XOR3,
+
+	ITM_Switch,
+	ITM_LED,
+
+	ITM_CLOSE,
+
+	ITM_CMP_CNT
+};
 
 enum SimMenuItem //The items of the simulation menu (you should add more items)
 {
 	//Note: Items are ordered here as they appear in menu
 	ITM_SIM,	//Simulate menu item
 	ITM_TRUTH,	//Truth table menu item
-	ITM_SAVE,
-	ITM_LOAD,
-	ITM_DELETE,
-
 	ITM_DSN_MODE,
 	
 	//TODO:Add more items names here
