@@ -14,7 +14,7 @@ void AND2::Operate()
 {
 	//caclulate the output status as the ANDing of the two input pins
 
-	if (m_InputPins[0].getStatus() && m_InputPins[1].getStatus())
+	if (m_InputPins[0].getStatus()==HIGH && m_InputPins[1].getStatus()==HIGH)
 		m_OutputPin.setStatus(HIGH);
 	else
 		m_OutputPin.setStatus(LOW);

@@ -158,6 +158,54 @@
     <ClCompile Include="Actions\CloseCompBar.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\AddORgate2.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\OR2.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddBuff.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Buff.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddNOR2.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\NOR2.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\XOR2.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddXOR2.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\XNOR2.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddXNOR2.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddAND3.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\AND3.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\NOR3.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddNOR3.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddXOR3.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\XOR3.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -277,6 +325,54 @@
     </ClInclude>
     <ClInclude Include="Actions\CloseCompBar.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddORgate2.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\OR2.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddBuff.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Buff.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddNOR2.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\NOR2.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\XOR2.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddXOR2.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\XNOR2.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddXNOR2.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddAND3.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\AND3.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\NOR3.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddNOR3.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddXOR3.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\XOR3.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
