@@ -11,6 +11,11 @@ void Input::GetPointClicked(int &x, int &y)
 	pWind->WaitMouseClick(x, y);	//Wait for mouse click
 }
 
+void Input::GetCurrentPosition(int &x, int &y)
+{
+	pWind->GetMouseCoord(x, y);
+}
+
 string Input::GetSrting(Output *pOut)
 {
 	pWind->FlushKeyQueue();

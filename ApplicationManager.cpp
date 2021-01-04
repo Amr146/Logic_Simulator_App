@@ -10,6 +10,7 @@
 #include "Actions\AddXNOR2.h"
 #include "Actions\Next.h"
 #include "Actions\Previous.h"
+#include "Select.h"
 #include "Actions\SimulateMode.h"
 #include "Actions\DesignMode.h"
 #include "Actions\DisplayCompBar.h"
@@ -17,6 +18,8 @@
 ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
+
+	Selected = NULL;
 
 	for(int i=0; i<MaxCompCount; i++)
 		CompList[i] = NULL;
@@ -98,6 +101,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new Previous(this);
 			break;
 
+		case SELECT:
+			pAct = new Select(this);
+			break;
+
 		case SIM_MODE:
 			pAct = new SimulateMode(this);
 			break;
@@ -128,11 +135,33 @@ void ApplicationManager::UpdateInterface()
 
 ////////////////////////////////////////////////////////////////////
 
+Component* ApplicationManager::GetClickedComponent(int x, int y)
+{
+	for (int i = 0; i < CompCount; i++)
+		if (CompList[i]->InsideMe(x, y))
+			return CompList[i];
+	return NULL;
+}
+
+////////////////////////////////////////////////////////////////////
+
 void ApplicationManager::Simulate()
 {
 	for (int i = 0; i < CompCount; i++)
 		CompList[i]->Operate();
 
+}
+
+////////////////////////////////////////////////////////////////////
+void ApplicationManager::SetSelected(Component* sel)
+{
+	Selected = sel;
+}
+
+////////////////////////////////////////////////////////////////////
+Component* ApplicationManager::GetSelected()
+{
+	return Selected;
 }
 
 ////////////////////////////////////////////////////////////////////
