@@ -13,6 +13,7 @@
 #include "Actions\Select.h"
 #include "Actions\DELETEE.h"
 #include "Actions\copyy.h"
+#include "Actions\cutt.h"
 #include "Actions\SimulateMode.h"
 #include "Actions\DesignMode.h"
 #include "Actions\DisplayCompBar.h"
@@ -111,6 +112,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 		case COPY:
 			pAct = new copyy (this);
+			break;
+		case CUT:
+			pAct = new cutt (this);
 			break;
 
 		case SIM_MODE:

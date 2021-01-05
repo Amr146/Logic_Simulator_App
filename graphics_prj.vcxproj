@@ -139,6 +139,7 @@
     <ClCompile Include="Actions\AddXOR3.cpp" />
     <ClCompile Include="Actions\CloseCompBar.cpp" />
     <ClCompile Include="Actions\copyy.cpp" />
+    <ClCompile Include="Actions\cutt.cpp" />
     <ClCompile Include="Actions\DELETEE.cpp" />
     <ClCompile Include="Actions\DesignMode.cpp" />
     <ClCompile Include="Actions\DisplayCompBar.cpp" />
@@ -214,6 +215,7 @@
     <ClInclude Include="Actions\AddXOR3.h" />
     <ClInclude Include="Actions\CloseCompBar.h" />
     <ClInclude Include="Actions\copyy.h" />
+    <ClInclude Include="Actions\cutt.h" />
     <ClInclude Include="Actions\DELETEE.h" />
     <ClInclude Include="Actions\DesignMode.h" />
     <ClInclude Include="Actions\DisplayCompBar.h" />
