@@ -48,4 +48,7 @@ void Buff::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n-1].setStatus(s);
 }
-
+ActionType Buff:: getactiontype()
+{
+	return ADD_Buff;
+}

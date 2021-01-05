@@ -12,6 +12,7 @@
 #include "Actions\Previous.h"
 #include "Actions\Select.h"
 #include "Actions\DELETEE.h"
+#include "Actions\copyy.h"
 #include "Actions\SimulateMode.h"
 #include "Actions\DesignMode.h"
 #include "Actions\DisplayCompBar.h"
@@ -108,6 +109,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case DEL:
 			pAct = new DELETEE(this);
 			break;
+		case COPY:
+			pAct = new copyy (this);
+			break;
 
 		case SIM_MODE:
 			pAct = new SimulateMode(this);
@@ -179,6 +183,13 @@ void ApplicationManager:: deletecomp(Component* target)
 			break;
 		}
 	}
+}
+void ApplicationManager:: copycomp(ActionType c)
+{
+	
+				 ApplicationManager:: ExecuteAction(c);
+				 
+	
 }
 ////////////////////////////////////////////////////////////////////
 Component* ApplicationManager::GetSelected()

@@ -61,3 +61,7 @@ void XOR3::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n-1].setStatus(s);
 }
+ActionType XOR3:: getactiontype()
+{
+	return ADD_XOR_GATE_3;
+}

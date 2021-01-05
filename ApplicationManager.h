@@ -35,6 +35,7 @@ public:
 	
 	void SetSelected(Component*);
 	void deletecomp(Component*);
+	void  copycomp(ActionType c);
 	Component* GetSelected();
 
 	Component* GetClickedComponent(int x, int y);

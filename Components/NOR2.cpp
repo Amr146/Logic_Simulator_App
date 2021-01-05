@@ -49,4 +49,7 @@ void NOR2::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n-1].setStatus(s);
 }
-
+ActionType NOR2:: getactiontype()
+{
+	return ADD_NOR_GATE_2;
+}

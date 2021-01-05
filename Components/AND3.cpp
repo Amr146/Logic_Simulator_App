@@ -49,3 +49,7 @@ void AND3::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n-1].setStatus(s);
 }
+ActionType AND3:: getactiontype()
+{
+	return ADD_AND_GATE_3;
+}

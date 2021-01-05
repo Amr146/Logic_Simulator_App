@@ -48,4 +48,7 @@ void OR2::setInputPinStatus(int n, STATUS s)
 {
 	m_InputPins[n-1].setStatus(s);
 }
-
+ActionType OR2:: getactiontype()
+{
+	return ADD_OR_GATE_2;
+}

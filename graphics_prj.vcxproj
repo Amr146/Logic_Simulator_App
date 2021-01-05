@@ -17,7 +17,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -138,6 +138,7 @@
     <ClCompile Include="Actions\AddXOR2.cpp" />
     <ClCompile Include="Actions\AddXOR3.cpp" />
     <ClCompile Include="Actions\CloseCompBar.cpp" />
+    <ClCompile Include="Actions\copyy.cpp" />
     <ClCompile Include="Actions\DELETEE.cpp" />
     <ClCompile Include="Actions\DesignMode.cpp" />
     <ClCompile Include="Actions\DisplayCompBar.cpp" />
@@ -212,6 +213,7 @@
     <ClInclude Include="Actions\AddXOR2.h" />
     <ClInclude Include="Actions\AddXOR3.h" />
     <ClInclude Include="Actions\CloseCompBar.h" />
+    <ClInclude Include="Actions\copyy.h" />
     <ClInclude Include="Actions\DELETEE.h" />
     <ClInclude Include="Actions\DesignMode.h" />
     <ClInclude Include="Actions\DisplayCompBar.h" />
