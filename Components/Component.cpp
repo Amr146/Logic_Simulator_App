@@ -17,7 +17,10 @@ void Component::SetIsSelected(bool q)
 {
 	IsSelected = q;
 }
-
+bool Component:: getisselected()
+{
+	return IsSelected;
+}
 Component::Component()
 {}
 

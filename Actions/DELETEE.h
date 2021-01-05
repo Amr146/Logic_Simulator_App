@@ -1,13 +1,13 @@
 #pragma once
-#include "Action.h"
+#include "e:\mohamed engineering\programing project phase 2\3\logic_simulator_app\actions\action.h"
 #include "..\Components\Component.h"
-class Select : public Action
+class DELETEE :
+	public Action
 {
-private:
-	int x, y;
-	Component* target;
+	int CompoCount;
+	Component* CompoList[];
 public:
-	Select(ApplicationManager* pApp);
+	DELETEE(ApplicationManager *pApp);
 	virtual void ReadActionParameters();
 
 	//Execute action (code depends on action type)
@@ -18,7 +18,6 @@ public:
 
 	//To redo this action (code depends on action type)
 	virtual void Redo();
-
-	~Select();
+	~DELETEE(void);
 };
 

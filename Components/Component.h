@@ -10,6 +10,7 @@ class Component
 private:
 	string m_Label;
 protected:
+	Output* pout;
 	bool IsSelected;
 	GraphicsInfo m_GfxInfo;	//The parameters required to draw a component
 public:
@@ -20,6 +21,7 @@ public:
 	bool InsideMe(int x, int y);
 	
 	void SetIsSelected(bool q);
+	bool getisselected();
 	
 	virtual int GetOutPinStatus()=0;	//returns status of outputpin if LED, return -1
 	virtual int GetInputPinStatus(int n)=0;	//returns status of Inputpin # n if SWITCH, return -1

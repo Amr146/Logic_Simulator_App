@@ -10,7 +10,8 @@
 #include "Actions\AddXNOR2.h"
 #include "Actions\Next.h"
 #include "Actions\Previous.h"
-#include "Select.h"
+#include "Actions\Select.h"
+#include "Actions\DELETEE.h"
 #include "Actions\SimulateMode.h"
 #include "Actions\DesignMode.h"
 #include "Actions\DisplayCompBar.h"
@@ -104,6 +105,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case SELECT:
 			pAct = new Select(this);
 			break;
+		case DEL:
+			pAct = new DELETEE(this);
+			break;
 
 		case SIM_MODE:
 			pAct = new SimulateMode(this);
@@ -128,6 +132,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 void ApplicationManager::UpdateInterface()
 {
+	OutputInterface->ClearDrawingArea();
 		for(int i=0; i<CompCount; i++)
 			CompList[i]->Draw(OutputInterface);
 
@@ -158,6 +163,28 @@ void ApplicationManager::SetSelected(Component* sel)
 	Selected = sel;
 }
 
+void ApplicationManager:: deletecomp()
+{
+	for (int i=0; i<CompCount; i++)
+	{
+		if (CompList[i]->getisselected()==true)
+		{
+			
+			
+			Component *temp;
+			temp = CompList[i];
+			CompList[i] = CompList[CompCount-1];
+			CompList[CompCount-1]=temp;
+			
+		    CompCount--;
+			
+
+			
+			
+			break;
+		}
+	}
+}
 ////////////////////////////////////////////////////////////////////
 Component* ApplicationManager::GetSelected()
 {
