@@ -47,7 +47,8 @@ enum ActionType
 	PREVIOUS,   //display the previous gates group
 	COMP_BAR,
 	CLOSE_COMP_BAR,
-	CLIPBOARD,
+	COPY,
+	CUT,
 
 	STATUS_BAR,		//A click on the status bar
 	DSN_TOOL,	//A click on an empty place in the design tool bar
@@ -74,12 +75,12 @@ enum DsgnMenuItem //The items of the design menu (you should add more items)
 	//If you want to change the menu items order, change the order here
 	ITM_ADD,
 	ITM_CONNECTION,
-	ITM_SELECT,
 	ITM_LABEL,
 	ITM_EDIT,
 	ITM_DELETE,
 	ITM_MOVE,
-	ITM_CLIPBOARD,
+	ITM_COPY,
+	ITM_CUT,
 	ITM_SIM_MODE,
 	ITM_SAVE,
 	ITM_LOAD,

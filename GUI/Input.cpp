@@ -72,12 +72,12 @@ ActionType Input::GetUserAction() const
 				{
 				case ITM_ADD: return COMP_BAR;
 				case ITM_CONNECTION: return ADD_CONNECTION;
-				case ITM_SELECT: return SELECT;
 				case ITM_LABEL: return ADD_Label;
 				case ITM_EDIT: return EDIT_Label;
 				case ITM_DELETE: return DEL;
 				case ITM_MOVE: return MOVE;
-				case ITM_CLIPBOARD: return CLIPBOARD;
+				case ITM_COPY: return COPY;
+				case ITM_CUT: return CUT;
 				case ITM_SIM_MODE: return SIM_MODE;
 				case ITM_SAVE: return SAVE;
 				case ITM_LOAD: return LOAD;

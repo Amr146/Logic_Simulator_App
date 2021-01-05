@@ -163,23 +163,18 @@ void ApplicationManager::SetSelected(Component* sel)
 	Selected = sel;
 }
 
-void ApplicationManager:: deletecomp()
+void ApplicationManager:: deletecomp(Component* target)
 {
 	for (int i=0; i<CompCount; i++)
 	{
-		if (CompList[i]->getisselected()==true)
+		if (CompList[i] == target)
 		{
-			
-			
-			Component *temp;
-			temp = CompList[i];
 			CompList[i] = CompList[CompCount-1];
-			CompList[CompCount-1]=temp;
+			CompList[CompCount - 1] = target;
+			delete CompList[CompCount - 1];
+			CompList[CompCount - 1] = NULL;
 			
 		    CompCount--;
-			
-
-			
 			
 			break;
 		}

@@ -97,12 +97,12 @@ void Output::CreateDesignToolBar() const
 	string DesignMenuItemImages[ITM_DSN_CNT];
 	DesignMenuItemImages[ITM_ADD] = "images\\Menu\\Menu_ADD.jpg";
 	DesignMenuItemImages[ITM_CONNECTION] = "images\\Menu\\Menu_CONNECTION.jpg";
-	DesignMenuItemImages[ITM_SELECT] = "images\\Menu\\Menu_Select.jpg";
 	DesignMenuItemImages[ITM_LABEL] = "images\\Menu\\Menu_Label.jpg";
 	DesignMenuItemImages[ITM_EDIT] = "images\\Menu\\Menu_Edit.jpg";
 	DesignMenuItemImages[ITM_DELETE]  = "images\\Menu\\Menu_DELETE.jpg";
 	DesignMenuItemImages[ITM_MOVE]  = "images\\Menu\\Menu_Move.jpg";
-	DesignMenuItemImages[ITM_CLIPBOARD] = "images\\Menu\\Menu_Clipboard.jpg";
+	DesignMenuItemImages[ITM_COPY] = "images\\Menu\\Menu_Copy.jpg";
+	DesignMenuItemImages[ITM_CUT] = "images\\Menu\\Menu_Cut.jpg";
 	DesignMenuItemImages[ITM_SIM_MODE] = "images\\Menu\\Menu_SIM_MODE.jpg";
 	DesignMenuItemImages[ITM_SAVE] = "images\\Menu\\Menu_SAVE.jpg";
 	DesignMenuItemImages[ITM_LOAD] = "images\\Menu\\Menu_LOAD.jpg";

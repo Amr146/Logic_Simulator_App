@@ -34,7 +34,7 @@ public:
 	void UpdateInterface();	//Redraws all the drawing window
 	
 	void SetSelected(Component*);
-	void deletecomp();
+	void deletecomp(Component*);
 	Component* GetSelected();
 
 	Component* GetClickedComponent(int x, int y);

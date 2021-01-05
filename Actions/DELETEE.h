@@ -1,11 +1,11 @@
 #pragma once
-#include "e:\mohamed engineering\programing project phase 2\3\logic_simulator_app\actions\action.h"
+#include "action.h"
 #include "..\Components\Component.h"
 class DELETEE :
 	public Action
 {
-	int CompoCount;
-	Component* CompoList[];
+private:
+	Component* target;
 public:
 	DELETEE(ApplicationManager *pApp);
 	virtual void ReadActionParameters();

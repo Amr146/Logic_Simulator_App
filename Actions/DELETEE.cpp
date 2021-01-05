@@ -1,17 +1,27 @@
 #include "DELETEE.h"
 #include "../ApplicationManager.h"
 
-DELETEE::DELETEE(ApplicationManager *pApp)//,Component** complist,int  compcount)
+DELETEE::DELETEE(ApplicationManager *pApp)
 	: Action(pApp)
 {
 	
 }
-void DELETEE:: ReadActionParameters(){}
+void DELETEE:: ReadActionParameters()
+{
+	if (pManager->GetSelected() != NULL)
+		target = pManager->GetSelected();
+	else
+		target = NULL;
+}
 void DELETEE:: Execute()
 {
+	ReadActionParameters();
 
-			pManager->deletecomp();
-			
+	if (target != NULL)
+	{
+		pManager->deletecomp(target);
+		pManager->SetSelected(NULL);
+	}
 }
 void DELETEE:: Undo(){}
 void DELETEE:: Redo(){}
