@@ -218,6 +218,27 @@
     <ClCompile Include="Actions\cutt.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\ADD_CONNECTION.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddLED.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddNANDgate2.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Actions\AddSwitch.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\LED.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\NAND2.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Components\Switch.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -397,6 +418,27 @@
     </ClInclude>
     <ClInclude Include="Actions\cutt.h">
       <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\ADD_CONNECTION.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddLED.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddNANDgate2.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\AddSwitch.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\LED.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\NAND2.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Components\Switch.h">
+      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

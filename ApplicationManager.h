@@ -49,6 +49,10 @@ public:
 	//Adds a new component to the list of components
 	void AddComponent(Component* pComp);
 
+	Component* get_Component(int n);
+
+	bool is_com(int&, int&, int& ,int&, bool);
+
 	//destructor
 	~ApplicationManager();
 };

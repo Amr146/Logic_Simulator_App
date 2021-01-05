@@ -2,12 +2,15 @@
 #include "Actions\AddANDgate2.h"
 #include "Actions\AddBuff.h"
 #include "Actions\AddORgate2.h"
+#include "Actions\AddNANDgate2.h"
 #include "Actions\AddNOR2.h"
 #include "Actions\AddNOR3.h"
 #include "Actions\AddXOR2.h"
 #include "Actions\AddXOR3.h"
 #include "Actions\AddAND3.h"
 #include "Actions\AddXNOR2.h"
+#include "Actions\AddSwitch.h"
+#include "Actions\AddLED.h"
 #include "Actions\Next.h"
 #include "Actions\Previous.h"
 #include "Actions\Select.h"
@@ -18,6 +21,7 @@
 #include "Actions\DesignMode.h"
 #include "Actions\DisplayCompBar.h"
 #include "Actions\CloseCompBar.h"
+#include "Actions\ADD_CONNECTION.h"
 ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
@@ -37,6 +41,25 @@ void ApplicationManager::AddComponent(Component* pComp)
 	CompList[CompCount++] = pComp;		
 }
 ////////////////////////////////////////////////////////////////////
+
+Component* ApplicationManager::get_Component(int n)
+{
+	return CompList[n];
+}
+
+bool ApplicationManager::is_com(int &x, int &y ,int &k, int&pin , bool b)
+{
+	for(int i=0;i<CompCount;i++)
+	{
+		if( CompList[i]->is_comp(x,y,pin,b))
+		{
+			k=i;
+			return true;
+		}
+	}
+
+	return false;
+}
 
 ActionType ApplicationManager::GetUserAction()
 {
@@ -62,6 +85,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct= new AddBuff(this);
 			break;
 
+		case ADD_NAND_GATE_2:
+			pAct= new AddNANDgate2(this);
+			break;
+
 		case ADD_NOR_GATE_2:
 			pAct= new AddNOR2(this);
 			break;
@@ -83,9 +110,17 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct= new AddXOR3(this);
 			break;
 
+		case ADD_Switch:
+			pAct= new AddSwitch(this);
+			break;
+
+		case ADD_LED:
+			pAct= new AddLED(this);
+			break;
+
 
 		case ADD_CONNECTION:
-			//TODO: Create AddConection Action here
+			pAct= new AddConnection(this);
 			break;
 
 		case COMP_BAR:
@@ -141,6 +176,32 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 void ApplicationManager::UpdateInterface()
 {
 	OutputInterface->ClearDrawingArea();
+	int min1=0;
+	int min2=1000;
+	int n;
+		for(int i=0; i<CompCount; i++)
+		{
+			for(int k=0; k<CompCount; k++)
+			{
+				if(CompList[k]->get_graphicinfo().x1>min1 && CompList[k]->get_graphicinfo().x1<min2 )
+				{
+						min2=CompList[k]->get_graphicinfo().x1;
+						n=k;
+				}
+
+			}
+			for(int q=0; q<CompCount; q++)
+			{
+				if(CompList[q]->get_graphicinfo().x1==min2)
+				{
+					CompList[q]->Operate();
+					
+				}
+			}
+			min1=CompList[n]->get_graphicinfo().x1;
+			min2=1000;
+
+		}
 		for(int i=0; i<CompCount; i++)
 			CompList[i]->Draw(OutputInterface);
 

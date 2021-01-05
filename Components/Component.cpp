@@ -3,6 +3,7 @@
 Component::Component(const GraphicsInfo &r_GfxInfo)
 {
 	m_GfxInfo = r_GfxInfo;
+
 }
 
 bool Component :: InsideMe(int x, int y)
@@ -21,8 +22,16 @@ bool Component:: getisselected()
 {
 	return IsSelected;
 }
+
+GraphicsInfo Component::get_graphicinfo()
+{
+	return m_GfxInfo;
+}
+
 Component::Component()
-{}
+{
+	IsSelected=false;
+}
 
 Component::~Component()
 {}

@@ -1,14 +1,18 @@
 #include "Connection.h"
 
-Connection::Connection(const GraphicsInfo &r_GfxInfo, OutputPin *pSrcPin,InputPin *pDstPin):Component(r_GfxInfo)	
+Connection::Connection(const GraphicsInfo &r_GfxInfo, Component *pS,Component *pD, int Pin ):Component(r_GfxInfo)
 	
 {
-	SrcPin = pSrcPin;
-	DstPin = pDstPin;
-
-	IsSelected = false;
-
+	SrcCmpnt=pS;
+	DstCmpnt=pD;
+	n_DstPin=Pin;
+	SrcPin=pS->getSourcePin();
+	DstPin=pD->getDestPin(Pin);
+	SrcPin->ConnectTo(this);
+	//c=DstCmpnt->T_connected();
+	
 }
+
 void Connection::setSourcePin(OutputPin *pSrcPin)
 {	SrcPin = pSrcPin;	}
 
@@ -19,7 +23,7 @@ OutputPin* Connection::getSourcePin()
 void Connection::setDestPin(InputPin *pDstPin)
 {	DstPin = pDstPin;	}
 
-InputPin* Connection::getDestPin()
+InputPin* Connection::getDestPin(int n)
 {	return DstPin;	}
 
 
@@ -31,7 +35,7 @@ void Connection::Operate()
 
 void Connection::Draw(Output* pOut)
 {
-	pOut->DrawConnection(m_GfxInfo, IsSelected);
+	pOut->DrawConnection(m_GfxInfo);
 }
 
 int Connection::GetOutPinStatus()	//returns status of outputpin if LED, return -1
@@ -48,4 +52,26 @@ int Connection::GetInputPinStatus(int n)	//returns status of Inputpin # n if SWI
 void Connection::setInputPinStatus(int n, STATUS s)
 {
 	SrcPin->setStatus(s);
+}
+
+bool Connection::is_comp(int& x,int& y,int&n, bool b)
+{
+	if(b==true)
+	{
+		if(!(SrcPin->can_connected()))
+			return false;
+	}
+	if(m_GfxInfo.x1<x&& m_GfxInfo.x1+((m_GfxInfo.x2-m_GfxInfo.x1)/4)>x && m_GfxInfo.y1-1.5<y && m_GfxInfo.y1+1.5>y)
+		return true;
+	else if (m_GfxInfo.x1+((m_GfxInfo.x2-m_GfxInfo.x1)/4)-1.5<x && m_GfxInfo.x1+((m_GfxInfo.x2-m_GfxInfo.x1)/4)+1.5>x && m_GfxInfo.y1<y && m_GfxInfo.y1>y)
+		return true;
+	else if (m_GfxInfo.x1+((m_GfxInfo.x2-m_GfxInfo.x1)/4)<x && m_GfxInfo.x2>x && m_GfxInfo.y2-1.5<y && m_GfxInfo.y2+1.5>y)
+		return true;
+	else
+		return false;
+}
+
+ActionType Connection::getactiontype()
+{
+	return ADD_CONNECTION;
 }

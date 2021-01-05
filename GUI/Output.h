@@ -60,7 +60,9 @@ public:
 	void DrawSWITCH(GraphicsInfo r_GfxInfo, bool selected = false) const;
 
 	// Draws LED
-	void DrawLED(GraphicsInfo r_GfxInfo, bool selected = false) const;
+	void DrawLEDoff(GraphicsInfo r_GfxInfo, bool selected = false) const;
+
+	void DrawLEDon(GraphicsInfo r_GfxInfo, bool selected = false) const;
 
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc
 

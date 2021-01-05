@@ -3,6 +3,8 @@
 
 #include "..\Defs.h"
 #include "..\GUI\Output.h"
+#include "InputPin.h"
+#include "OutputPin.h"
 
 //Base class for classes Gate, Switch, and LED.
 class Component
@@ -29,7 +31,14 @@ public:
 
 	virtual void setInputPinStatus(int n, STATUS s)=0;	//set status of Inputpin # n, to be used by connection class.
 
-	
+	virtual bool is_comp(int&,int&,int&, bool)=0;
+
+	GraphicsInfo get_graphicinfo();
+
+	virtual OutputPin* getSourcePin()=0;
+	virtual InputPin* getDestPin(int i=0)=0;
+
+
 	Component();	
 	
 	//Destructor must be virtual
