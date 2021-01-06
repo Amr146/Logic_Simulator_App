@@ -135,6 +135,7 @@
     <ClCompile Include="Actions\AddNANDgate2.cpp" />
     <ClCompile Include="Actions\AddNOR2.cpp" />
     <ClCompile Include="Actions\AddNOR3.cpp" />
+    <ClCompile Include="Actions\AddNOT.cpp" />
     <ClCompile Include="Actions\AddORgate2.cpp" />
     <ClCompile Include="Actions\AddSwitch.cpp" />
     <ClCompile Include="Actions\AddXNOR2.cpp" />
@@ -197,6 +198,7 @@
     <ClCompile Include="Components\NAND2.cpp" />
     <ClCompile Include="Components\NOR2.cpp" />
     <ClCompile Include="Components\NOR3.cpp" />
+    <ClCompile Include="Components\NOT.cpp" />
     <ClCompile Include="Components\OR2.cpp" />
     <ClCompile Include="Components\OutputPin.cpp" />
     <ClCompile Include="Components\Pin.cpp" />
@@ -218,6 +220,7 @@
     <ClInclude Include="Actions\AddNANDgate2.h" />
     <ClInclude Include="Actions\AddNOR2.h" />
     <ClInclude Include="Actions\AddNOR3.h" />
+    <ClInclude Include="Actions\AddNOT.h" />
     <ClInclude Include="Actions\AddORgate2.h" />
     <ClInclude Include="Actions\AddSwitch.h" />
     <ClInclude Include="Actions\AddXNOR2.h" />
@@ -265,6 +268,7 @@
     <ClInclude Include="Components\NAND2.h" />
     <ClInclude Include="Components\NOR2.h" />
     <ClInclude Include="Components\NOR3.h" />
+    <ClInclude Include="Components\NOT.h" />
     <ClInclude Include="Components\OR2.h" />
     <ClInclude Include="Components\OutputPin.h" />
     <ClInclude Include="Components\Pin.h" />

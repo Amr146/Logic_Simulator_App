@@ -1,6 +1,7 @@
 #include "ApplicationManager.h"
 #include "Actions\AddANDgate2.h"
 #include "Actions\AddBuff.h"
+#include "Actions\AddNOT.h"
 #include "Actions\AddORgate2.h"
 #include "Actions\AddNANDgate2.h"
 #include "Actions\AddNOR2.h"
@@ -83,6 +84,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 
 		case ADD_Buff:
 			pAct= new AddBuff(this);
+			break;
+		case ADD_INV:
+			pAct= new AddNOT(this);
 			break;
 
 		case ADD_NAND_GATE_2:
