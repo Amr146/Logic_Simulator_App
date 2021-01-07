@@ -5,6 +5,7 @@
 
 class Connection :	public Component
 {
+	const int SelectBoxSize;
 	Component*	SrcCmpnt;	//Connection source component
 	Component*	DstCmpnt;	//Connection Destination component
 	int		n_DstPin;		//The Input pin to which this connection is linked
@@ -29,6 +30,9 @@ public:
 
 	virtual bool is_comp(int&,int&,int&,bool);
 
+	virtual bool InsideMe(int x, int y);
+
 	virtual ActionType getactiontype();
 
+	~Connection();
 };

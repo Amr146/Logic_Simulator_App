@@ -245,6 +245,9 @@
     <ClCompile Include="Components\NOT.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\Paste.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -451,6 +454,9 @@
     </ClInclude>
     <ClInclude Include="Components\NOT.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\Paste.h">
+      <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

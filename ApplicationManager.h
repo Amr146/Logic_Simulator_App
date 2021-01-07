@@ -14,7 +14,10 @@ class ApplicationManager
 	enum { MaxCompCount = 200 };	//Max no of Components	
 
 private:
-	Component* Selected;
+	Component* Selected; //poiter to the selected component
+	Component* Clipboard; //poiter to the component in the clipboard
+	Mode ClipboardMode;
+	ActionType ClipboardType;
 	int CompCount;		//Actual number of Components
 	Component* CompList[MaxCompCount];	//List of all Components (Array of pointers)
 
@@ -33,10 +36,13 @@ public:
 	
 	void UpdateInterface();	//Redraws all the drawing window
 	
-	void SetSelected(Component*);
-	void deletecomp(Component*);
-	void  copycomp(ActionType c);
-	Component* GetSelected();
+	void SetSelected(Component*); //Sets Selected pointer
+	void deletecomp(Component*);  //deletes a component from the componentslist 
+	Component* GetSelected();  //gets Selected pointer
+
+	void SetClipboard(Component*, Mode, ActionType); //Sets Clipboard pointer
+	Component* GetClipboard(Mode&, ActionType&);  //gets Clipboard pointer
+
 
 	Component* GetClickedComponent(int x, int y);
 

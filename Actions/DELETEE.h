@@ -6,6 +6,7 @@ class DELETEE :
 {
 private:
 	Component* target;
+	Connection** targetConnections;
 public:
 	DELETEE(ApplicationManager *pApp);
 	virtual void ReadActionParameters();

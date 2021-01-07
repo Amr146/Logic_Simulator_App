@@ -49,6 +49,7 @@ enum ActionType
 	CLOSE_COMP_BAR,
 	COPY,
 	CUT,
+	PASTE,
 
 	STATUS_BAR,		//A click on the status bar
 	DSN_TOOL,	//A click on an empty place in the design tool bar
@@ -60,6 +61,12 @@ enum STATUS
 {
 	LOW,
 	HIGH
+};
+//Possible Modes of the Clipboard
+enum Mode
+{
+	Copy,
+	Cut
 };
 
 enum  MODE	//Modes of operation
@@ -78,9 +85,9 @@ enum DsgnMenuItem //The items of the design menu (you should add more items)
 	ITM_LABEL,
 	ITM_EDIT,
 	ITM_DELETE,
-	ITM_MOVE,
 	ITM_COPY,
 	ITM_CUT,
+	ITM_PASTE,
 	ITM_SIM_MODE,
 	ITM_SAVE,
 	ITM_LOAD,

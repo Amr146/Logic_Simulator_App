@@ -18,6 +18,7 @@
 #include "Actions\DELETEE.h"
 #include "Actions\copyy.h"
 #include "Actions\cutt.h"
+#include "Actions\Paste.h"
 #include "Actions\SimulateMode.h"
 #include "Actions\DesignMode.h"
 #include "Actions\DisplayCompBar.h"
@@ -155,6 +156,9 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 		case CUT:
 			pAct = new cutt (this);
 			break;
+		case PASTE:
+			pAct = new Paste(this);
+			break;
 
 		case SIM_MODE:
 			pAct = new SimulateMode(this);
@@ -253,19 +257,26 @@ void ApplicationManager:: deletecomp(Component* target)
 		}
 	}
 }
-void ApplicationManager:: copycomp(ActionType c)
-{
-	
-				 ApplicationManager:: ExecuteAction(c);
-				 
-	
-}
 ////////////////////////////////////////////////////////////////////
 Component* ApplicationManager::GetSelected()
 {
 	return Selected;
 }
-
+/////////////////////////////////////////////////////////////////////
+void ApplicationManager :: SetClipboard(Component* target, Mode m, ActionType AT)
+{
+	if(m == Copy)
+		Clipboard = target;
+	ClipboardMode = m;
+	ClipboardType = AT;
+}
+////////////////////////////////////////////////////////////////////
+Component* ApplicationManager :: GetClipboard(Mode &m, ActionType &AT)
+{
+	AT = ClipboardType;
+	m = ClipboardMode;
+	return Clipboard;
+}
 ////////////////////////////////////////////////////////////////////
 Input* ApplicationManager::GetInput()
 {

@@ -14,6 +14,19 @@ bool Component :: InsideMe(int x, int y)
 		return false;
 }
 
+void Component::AddConnection(Connection* con)
+{
+	
+}
+void Component::RemoveConnection(Connection* con, Pin*, bool IsInput)
+{
+
+}
+Connection** Component::GetConnections(int &N)
+{
+	return NULL;
+}
+
 void Component::SetIsSelected(bool q)
 {
 	IsSelected = q;

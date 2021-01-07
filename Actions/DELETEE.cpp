@@ -1,5 +1,6 @@
 #include "DELETEE.h"
 #include "../ApplicationManager.h"
+#include "Connection.h"
 
 DELETEE::DELETEE(ApplicationManager *pApp)
 	: Action(pApp)
@@ -19,6 +20,16 @@ void DELETEE:: Execute()
 
 	if (target != NULL)
 	{
+		if (target != dynamic_cast<Connection*>(target))
+		{
+			int N = 0;
+			targetConnections = target->GetConnections(N);
+			for (int i = 0; i < N; i++)
+			{
+				pManager->deletecomp(targetConnections[i--]);
+				N--;
+			}
+		}
 		pManager->deletecomp(target);
 		pManager->SetSelected(NULL);
 	}

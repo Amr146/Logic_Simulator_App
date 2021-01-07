@@ -1,8 +1,9 @@
 #include "Connection.h"
-
-Connection::Connection(const GraphicsInfo &r_GfxInfo, Component *pS,Component *pD, int Pin ):Component(r_GfxInfo)
+#include "Gate.h"
+Connection::Connection(const GraphicsInfo &r_GfxInfo, Component *pS,Component *pD, int Pin ):Component(r_GfxInfo), SelectBoxSize(2)
 	
 {
+	IsSelected = false;
 	SrcCmpnt=pS;
 	DstCmpnt=pD;
 	n_DstPin=Pin;
@@ -10,6 +11,9 @@ Connection::Connection(const GraphicsInfo &r_GfxInfo, Component *pS,Component *p
 	DstPin=pD->getDestPin(Pin);
 	SrcPin->ConnectTo(this);
 	//c=DstCmpnt->T_connected();
+
+	SrcCmpnt->AddConnection(this);
+	DstCmpnt->AddConnection(this);
 	
 }
 
@@ -35,7 +39,7 @@ void Connection::Operate()
 
 void Connection::Draw(Output* pOut)
 {
-	pOut->DrawConnection(m_GfxInfo);
+	pOut->DrawConnection(m_GfxInfo, IsSelected);
 }
 
 int Connection::GetOutPinStatus()	//returns status of outputpin if LED, return -1
@@ -71,7 +75,29 @@ bool Connection::is_comp(int& x,int& y,int&n, bool b)
 		return false;
 }
 
+bool Connection::InsideMe(int x, int y)
+{
+	if (x >= (m_GfxInfo.x1) - SelectBoxSize && x <= m_GfxInfo.x1 + ((m_GfxInfo.x2 - m_GfxInfo.x1) / 4) + SelectBoxSize && y >= m_GfxInfo.y1 - SelectBoxSize && y <= m_GfxInfo.y1 + SelectBoxSize)
+		return true;
+	else if (x >= m_GfxInfo.x1 - SelectBoxSize + ((m_GfxInfo.x2 - m_GfxInfo.x1) / 4) + SelectBoxSize && x <= m_GfxInfo.x2 + SelectBoxSize && y >= m_GfxInfo.y2 - SelectBoxSize && y <= m_GfxInfo.y2 + SelectBoxSize)
+		return true;
+	else if (m_GfxInfo.y1 < m_GfxInfo.y2 && x >= m_GfxInfo.x1 - SelectBoxSize + ((m_GfxInfo.x2 - m_GfxInfo.x1) / 4) && x <= m_GfxInfo.x1 + SelectBoxSize + ((m_GfxInfo.x2 - m_GfxInfo.x1) / 4) && y >= m_GfxInfo.y1 + SelectBoxSize && y <= m_GfxInfo.y2 + SelectBoxSize)
+		return true;
+	else if (m_GfxInfo.y1 > m_GfxInfo.y2 && x >= m_GfxInfo.x1 - SelectBoxSize + ((m_GfxInfo.x2 - m_GfxInfo.x1) / 4)  && x <= m_GfxInfo.x1 + SelectBoxSize + ((m_GfxInfo.x2 - m_GfxInfo.x1) / 4) && y <= m_GfxInfo.y1 + SelectBoxSize && y >= m_GfxInfo.y2 + SelectBoxSize)
+		return true;
+	else
+		return false;
+}
+
+
 ActionType Connection::getactiontype()
 {
 	return ADD_CONNECTION;
+}
+
+
+Connection :: ~Connection()
+{
+	SrcCmpnt->RemoveConnection(this, SrcPin, false);
+	DstCmpnt->RemoveConnection(this, DstPin, true);
 }

@@ -21,6 +21,22 @@ bool OutputPin::ConnectTo(Connection *r_Conn)
 	return false;	//can't connect to any more connections
 }
 
+bool OutputPin :: DisconnectFrom(Connection* r_Conn)
+{
+	for (int i = 0; i < m_Conn; i++)
+	{
+		if (m_Connections[i] == r_Conn)
+		{
+			//Remove a connection the the array of connections
+			m_Connections[i] = m_Connections[m_Conn];
+			m_Connections[m_Conn] = NULL;
+			m_Conn--;
+			return true;
+		}
+	}
+	return false;   //Not connected to any connections
+}
+
 bool OutputPin::can_connected()
 {
 	if(m_Conn<m_FanOut)

@@ -31,6 +31,7 @@ int LED::GetInputPinStatus(int n=1)
 
 void LED::setInputPinStatus(int n, STATUS s)
 {
+	IsSelected = false;
 	m_InputPin.setStatus(s);
 }
 

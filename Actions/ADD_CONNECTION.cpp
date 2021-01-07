@@ -65,6 +65,7 @@ void AddConnection::Execute()
 	
 		Connection*pA = new Connection(GInfo,pManager->get_Component(i),pManager->get_Component(k),n_DstPin);
 		pManager->AddComponent(pA);
+		
 	}
 		
 	

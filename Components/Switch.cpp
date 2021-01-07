@@ -2,6 +2,7 @@
 
 Switch::Switch(const GraphicsInfo &r_GfxInfo, int r_FanOut):Component(r_GfxInfo),m_OutputPin(r_FanOut)
 {
+	IsSelected = false;
 	m_OutputPin.setStatus(HIGH);
 }
 

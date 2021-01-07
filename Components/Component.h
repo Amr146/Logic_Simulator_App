@@ -20,7 +20,12 @@ public:
 	virtual void Operate() = 0;	//Calculates the output according to the inputs
 	virtual void Draw(Output* pOut) = 0;	//for each component to Draw itself
 	
-	bool InsideMe(int x, int y);
+	virtual bool InsideMe(int x, int y);
+
+	virtual void AddConnection(Connection* con);
+	virtual void RemoveConnection(Connection* con, Pin*, bool IsInput);
+
+	virtual Connection** GetConnections(int &N);
 	
 	void SetIsSelected(bool q);
 	bool getisselected();

@@ -1,5 +1,6 @@
 #include "copyy.h"
 #include "..\ApplicationManager.h"
+#include "Connection.h"
 
 copyy::copyy(ApplicationManager *pApp)
 	: Action(pApp)
@@ -18,10 +19,9 @@ void copyy:: Execute()
 {
 	ReadActionParameters();
 
-	if (target1 != NULL)
+	if (target1 != NULL && target1 != dynamic_cast<Connection*>(target1)) //Check if the Selected component is supported by this operation
 	{
-		pManager->copycomp(target1->getactiontype());
-		pManager->SetSelected(NULL);
+		pManager->SetClipboard(target1, Copy, target1->getactiontype());
 	}
 			
 			

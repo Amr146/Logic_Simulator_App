@@ -21,8 +21,13 @@ void AddAND3::ReadActionParameters()
 	pOut->PrintMsg("3-Input AND Gate: Click to add the gate");
 
 	//Wait for User Input
-	pIn->GetPointClicked(Cx, Cy);
-
+		pIn->GetPointClicked(Cx, Cy);
+	//check if within drawing area
+	while (!(Cy > UI.ToolBarHeight + UI.AND2_Width / 2 && Cy < (UI.height - UI.StatusBarHeight) - UI.AND2_Width / 2))
+	{
+		pOut->PrintMsg("You are not allowed to print your label outside the drawing area, choose your place again...");
+		pIn->GetPointClicked(Cx, Cy);
+	}
 	//Clear Status Bar
 	pOut->ClearStatusBar();
 	
