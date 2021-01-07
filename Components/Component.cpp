@@ -46,7 +46,14 @@ Component::Component()
 	IsSelected=false;
 }
 
+
+string Component::getLabel(){
+	return m_Label;
+}
+
+void Component::setLabel(string lbl){
+	m_Label = lbl;
+}
+
 Component::~Component()
 {}
-
-

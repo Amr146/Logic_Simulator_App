@@ -1,6 +1,6 @@
 #include "DELETEE.h"
 #include "../ApplicationManager.h"
-#include "Connection.h"
+#include "../Components/Connection.h"
 
 DELETEE::DELETEE(ApplicationManager *pApp)
 	: Action(pApp)

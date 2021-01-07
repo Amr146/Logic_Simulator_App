@@ -24,6 +24,9 @@
 #include "Actions\DisplayCompBar.h"
 #include "Actions\CloseCompBar.h"
 #include "Actions\ADD_CONNECTION.h"
+#include "Actions\AddLable.h"
+#include "Actions\EditLabel.h"
+
 ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
@@ -128,6 +131,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct= new AddConnection(this);
 			break;
 
+		case ADD_Label:
+			pAct= new AddLabel(this);
+			break;
+
+		case EDIT_Label:
+			pAct= new EditLabel(this);
+			break;
+
 		case COMP_BAR:
 			pAct = new DisplayCompBar(this);
 			break;
@@ -210,9 +221,19 @@ void ApplicationManager::UpdateInterface()
 			min2=1000;
 
 		}
-		for(int i=0; i<CompCount; i++)
+		for(int i=0; i<CompCount; i++){
 			CompList[i]->Draw(OutputInterface);
-
+			if(CompList[i]->getLabel() != ""){
+				GraphicsInfo GfxInfo = CompList[i]->get_graphicinfo();
+				if(dynamic_cast<Connection*>(CompList[i]) != NULL){
+					GfxInfo.x1 = CompList[i]->get_graphicinfo().x1+ 7 + (CompList[i]->get_graphicinfo().x2 - CompList[i]->get_graphicinfo().x1)/4;
+					GfxInfo.y1 = CompList[i]->get_graphicinfo().y2 - 10;
+				}else{
+					GfxInfo.y1 -= UI.AND2_Height/2;
+				}
+				GetOutput()->PrintLabel(GfxInfo, CompList[i]->getLabel());
+			}
+		}
 }
 
 ////////////////////////////////////////////////////////////////////

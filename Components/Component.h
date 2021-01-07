@@ -43,6 +43,8 @@ public:
 	virtual OutputPin* getSourcePin()=0;
 	virtual InputPin* getDestPin(int i=0)=0;
 
+	string getLabel();
+	void setLabel(string lbl);
 
 	Component();	
 	

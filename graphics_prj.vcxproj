@@ -17,7 +17,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v110</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -131,6 +131,7 @@
     <ClCompile Include="Actions\AddAND3.cpp" />
     <ClCompile Include="Actions\AddANDgate2.cpp" />
     <ClCompile Include="Actions\AddBuff.cpp" />
+    <ClCompile Include="Actions\AddLable.cpp" />
     <ClCompile Include="Actions\AddLED.cpp" />
     <ClCompile Include="Actions\AddNANDgate2.cpp" />
     <ClCompile Include="Actions\AddNOR2.cpp" />
@@ -148,6 +149,7 @@
     <ClCompile Include="Actions\DELETEE.cpp" />
     <ClCompile Include="Actions\DesignMode.cpp" />
     <ClCompile Include="Actions\DisplayCompBar.cpp" />
+    <ClCompile Include="Actions\EditLabel.cpp" />
     <ClCompile Include="Actions\Next.cpp" />
     <ClCompile Include="Actions\Paste.cpp" />
     <ClCompile Include="Actions\Previous.cpp" />
@@ -217,6 +219,7 @@
     <ClInclude Include="Actions\AddAND3.h" />
     <ClInclude Include="Actions\AddANDgate2.h" />
     <ClInclude Include="Actions\AddBuff.h" />
+    <ClInclude Include="Actions\AddLable.h" />
     <ClInclude Include="Actions\AddLED.h" />
     <ClInclude Include="Actions\AddNANDgate2.h" />
     <ClInclude Include="Actions\AddNOR2.h" />
@@ -234,6 +237,7 @@
     <ClInclude Include="Actions\DELETEE.h" />
     <ClInclude Include="Actions\DesignMode.h" />
     <ClInclude Include="Actions\DisplayCompBar.h" />
+    <ClInclude Include="Actions\EditLabel.h" />
     <ClInclude Include="Actions\Next.h" />
     <ClInclude Include="Actions\Paste.h" />
     <ClInclude Include="Actions\Previous.h" />

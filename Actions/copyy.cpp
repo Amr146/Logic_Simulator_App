@@ -1,6 +1,6 @@
 #include "copyy.h"
 #include "..\ApplicationManager.h"
-#include "Connection.h"
+#include "../Components/Connection.h"
 
 copyy::copyy(ApplicationManager *pApp)
 	: Action(pApp)

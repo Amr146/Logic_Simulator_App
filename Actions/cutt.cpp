@@ -1,5 +1,5 @@
 #include "cutt.h"
-#include "Connection.h"
+#include "../Components/Connection.h"
 
 #include "..\ApplicationManager.h"
 

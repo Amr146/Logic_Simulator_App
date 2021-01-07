@@ -21,7 +21,7 @@ public:
 	void setSourcePin(OutputPin *pSrcPin);
 	void setDestPin(InputPin *pDstPin);
 	OutputPin* getSourcePin();
-	InputPin* getDestPin(int n);
+	InputPin* getDestPin(int n = 1);
 
 	virtual int GetOutPinStatus();	//returns status of outputpin if LED, return -1
 	virtual int GetInputPinStatus(int n);	//returns status of Inputpin # n if SWITCH, return -1
@@ -33,6 +33,14 @@ public:
 	virtual bool InsideMe(int x, int y);
 
 	virtual ActionType getactiontype();
+
+	void setSrcComp(Component*	Src);
+	void setDestComp(Component*	Dest);
+
+	Component*	GetSrcCmpnt();
+	Component*	GetDstCmpnt();
+
+	GraphicsInfo* getGfxInfo();
 
 	~Connection();
 };

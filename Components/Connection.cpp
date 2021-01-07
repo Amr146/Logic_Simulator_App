@@ -95,6 +95,23 @@ ActionType Connection::getactiontype()
 	return ADD_CONNECTION;
 }
 
+void Connection::setSrcComp(Component* Src){
+	SrcCmpnt = Src;
+}
+void Connection::setDestComp(Component* Dest){
+	DstCmpnt = Dest;
+}
+
+Component*	Connection::GetSrcCmpnt(){
+	return SrcCmpnt;
+}
+Component*	Connection::GetDstCmpnt(){
+	return DstCmpnt;
+}
+
+GraphicsInfo* Connection::getGfxInfo(){
+	return &m_GfxInfo;
+}
 
 Connection :: ~Connection()
 {
