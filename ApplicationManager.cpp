@@ -314,8 +314,13 @@ Output* ApplicationManager::GetOutput()
 
 ApplicationManager::~ApplicationManager()
 {
-	for(int i=0; i<CompCount; i++)
-		delete CompList[i];
+	for (int i = 0; i < CompCount; i++)
+	{
+		//delete CompList[i];
+		SetSelected(CompList[i]);
+		ExecuteAction(DEL);
+		i--;
+	}
 	delete OutputInterface;
 	delete InputInterface;
 	

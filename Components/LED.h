@@ -6,6 +6,9 @@
 class LED:public Component
 {
 	InputPin m_InputPin;
+
+	Connection* connection;
+
 public:
 	LED(const GraphicsInfo &r_GfxInfo);
 	virtual void Operate();	
@@ -19,6 +22,10 @@ public:
 	virtual bool is_comp(int&,int&,int&,bool);
 	OutputPin* getSourcePin();
 	InputPin* getDestPin(int);
+
+	void AddConnection(Connection* con);
+	void RemoveConnection(Connection* con, Pin*, bool IsInput);
+	Connection** GetConnections(int& N);
 
 	virtual ActionType getactiontype();
 

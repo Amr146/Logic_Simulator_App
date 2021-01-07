@@ -38,10 +38,15 @@ bool Gate::is_comp(int &x, int &y,int&n,bool b)
 				x=m_GfxInfo.x1;
 				if(m_Inputs==1)
 				{
-					y=m_GfxInfo.y1+25;
-					m_InputPins[0].set_isc(true);
-					InputCount++;
-					n = InputCount;
+					if (!m_InputPins[0].get_isC())
+					{
+						y = m_GfxInfo.y1 + 25;
+						m_InputPins[0].set_isc(true);
+						InputCount++;
+						n = 1;
+					}
+					else 
+						return false;
 				}
 
 				if(m_Inputs==2)

@@ -6,6 +6,9 @@
 class Switch:public Component
 {
 	OutputPin m_OutputPin;
+
+	Connection** ConnectionsList;
+	int ConnectionsCount;
 public:
 	Switch(const GraphicsInfo &r_GfxInfo, int r_FanOut);
 	virtual void Operate();	
@@ -20,5 +23,10 @@ public:
 	OutputPin* getSourcePin();
 	InputPin* getDestPin(int);
 
+	void AddConnection(Connection* con);
+	void RemoveConnection(Connection* con, Pin*, bool IsInput);
+	virtual Connection** GetConnections(int& N);
+
 	virtual ActionType getactiontype();
+	~Switch();
 };

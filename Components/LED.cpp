@@ -2,6 +2,7 @@
 LED::LED(const GraphicsInfo& r_GfxInfo):Component(r_GfxInfo)
 {
 	m_InputPin.setComponent(this);
+	IsSelected = false;
 }
 
 void LED::Operate()
@@ -57,6 +58,22 @@ bool LED::is_comp(int &x, int &y,int&n,bool b)
 		}
 	else
 		return false;
+}
+
+void LED :: AddConnection(Connection* con)
+{
+	connection = con;
+}
+void LED::RemoveConnection(Connection* con, Pin*, bool IsInput)
+{
+	con = NULL;
+	m_InputPin.set_isc(false);
+}
+
+Connection** LED :: GetConnections(int& N)
+{
+	N = 1;
+	return &connection;
 }
 
 OutputPin* LED::getSourcePin()

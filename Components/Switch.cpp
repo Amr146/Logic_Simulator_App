@@ -4,6 +4,8 @@ Switch::Switch(const GraphicsInfo &r_GfxInfo, int r_FanOut):Component(r_GfxInfo)
 {
 	IsSelected = false;
 	m_OutputPin.setStatus(HIGH);
+	ConnectionsList = new Connection * [r_FanOut];
+	ConnectionsCount = 0;
 }
 
 void Switch::Operate()
@@ -68,3 +70,36 @@ ActionType Switch::getactiontype()
 	return ADD_Switch;
 }
 
+void Switch::AddConnection(Connection* con)
+{
+	ConnectionsList[ConnectionsCount++] = con;
+}
+void Switch::RemoveConnection(Connection* con, Pin* pin, bool IsInput)
+{
+	for (int i = 0; i < ConnectionsCount; i++)
+	{
+		if (ConnectionsList[i] == con)
+		{
+
+			ConnectionsList[i] = ConnectionsList[ConnectionsCount - 1];
+			ConnectionsList[ConnectionsCount - 1] = NULL;
+
+			ConnectionsCount--;
+			m_OutputPin.DisconnectFrom(con);
+			break;
+		}
+	}
+
+
+}
+
+Connection** Switch::GetConnections(int& N)
+{
+	N = ConnectionsCount;
+	return ConnectionsList;
+}
+
+Switch :: ~Switch()
+{
+	delete[] ConnectionsList;
+}
