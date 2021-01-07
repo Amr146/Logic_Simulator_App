@@ -57,7 +57,8 @@ public:
 	void DrawXOR3(GraphicsInfo r_GfxInfo, bool selected = false) const;
 
 	// Draws SWITCH
-	void DrawSWITCH(GraphicsInfo r_GfxInfo, bool selected = false) const;
+	void DrawSWITCHon(GraphicsInfo r_GfxInfo, bool selected = false) const;
+	void DrawSWITCHoff(GraphicsInfo r_GfxInfo, bool selected = false) const;
 
 	// Draws LED
 	void DrawLEDoff(GraphicsInfo r_GfxInfo, bool selected = false) const;

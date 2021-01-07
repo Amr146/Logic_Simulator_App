@@ -24,6 +24,7 @@ public:
 	bool ConnectTo(Connection *r_Conn);	//connect to a new connection
 	bool DisconnectFrom(Connection* r_Conn);
 	bool can_connected();
+	bool get_isC();
 };
 
 #endif

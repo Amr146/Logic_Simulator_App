@@ -14,10 +14,18 @@ void SimulateMode :: Execute()
 	//Get a Pointer to the Output Interface
 	Output* pOut = pManager->GetOutput();
 	//Switch to the simulation mode
-	pOut->CreateSimulationToolBar();
-
-	pManager->Simulate();
+	
+	if(pManager->fullyconnected())
+	{
+		pOut->CreateSimulationToolBar();
+		pManager->Simulate();
+	}
+	else
+	{
+		pOut->PrintMsg("The circuit is NOT fully or correctly connected");
+	}
 }
+
 void SimulateMode :: Undo()
 {
 }

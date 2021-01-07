@@ -254,6 +254,9 @@
     <ClCompile Include="Actions\EditLabel.cpp">
       <Filter>Actions</Filter>
     </ClCompile>
+    <ClCompile Include="Actions\Simulation.cpp">
+      <Filter>Actions</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Defs.H" />
@@ -468,6 +471,9 @@
       <Filter>Actions</Filter>
     </ClInclude>
     <ClInclude Include="Actions\EditLabel.h">
+      <Filter>Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Actions\Simulation.h">
       <Filter>Actions</Filter>
     </ClInclude>
   </ItemGroup>

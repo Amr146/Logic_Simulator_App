@@ -18,20 +18,24 @@ void AddConnection::ReadActionParameters()
 	//Print Action Message
 	raction=false;
 	//Wait for User Input
-	pOut->PrintMsg("Click on the source");
+	pOut->PrintMsg("Click on the source gate");
 	pIn->GetPointClicked(x1, y1);
 	if(!pManager->is_com(x1,y1,i,n_DstPin,true) )
 		{
 			pOut->ClearStatusBar();
 			return ;
 		}
-	pOut->PrintMsg("Click on the Destination pin");
+	pOut->PrintMsg("Click on the Destination gate");
 	pIn->GetPointClicked(x2, y2);
-	if(!(x2>x1))
+	if(x2<x1)
 	{
 		pOut->ClearStatusBar();
 		return;
 	}
+	pOut->PrintMsg("Enter the InputPin's Number : ");
+	string s;
+	s=pIn->GetSrting(pOut);
+	n_DstPin=stoi(s);
 	if(!pManager->is_com(x2,y2,k,n_DstPin, false) )
 	{
 		pOut->ClearStatusBar();

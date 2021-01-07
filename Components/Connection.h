@@ -34,6 +34,8 @@ public:
 
 	virtual ActionType getactiontype();
 
+	virtual bool fullconnected ();
+
 	void setSrcComp(Component*	Src);
 	void setDestComp(Component*	Dest);
 

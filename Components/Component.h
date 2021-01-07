@@ -43,6 +43,10 @@ public:
 	virtual OutputPin* getSourcePin()=0;
 	virtual InputPin* getDestPin(int i=0)=0;
 
+	virtual bool fullconnected ()=0;
+
+	virtual void change_status();
+
 	string getLabel();
 	void setLabel(string lbl);
 

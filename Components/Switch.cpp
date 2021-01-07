@@ -3,7 +3,7 @@
 Switch::Switch(const GraphicsInfo &r_GfxInfo, int r_FanOut):Component(r_GfxInfo),m_OutputPin(r_FanOut)
 {
 	IsSelected = false;
-	m_OutputPin.setStatus(HIGH);
+	m_OutputPin.setStatus(LOW);
 	ConnectionsList = new Connection * [r_FanOut];
 	ConnectionsCount = 0;
 }
@@ -15,7 +15,10 @@ void Switch::Operate()
 void Switch::Draw(Output* pOut)
 {
 	//Call output class and pass gate drawing info to it.
-	pOut->DrawSWITCH(m_GfxInfo);
+	if(m_OutputPin.getStatus()==HIGH)
+		pOut->DrawSWITCHon(m_GfxInfo);
+	else 
+		pOut->DrawSWITCHoff(m_GfxInfo);
 	
 	
 }
@@ -93,11 +96,28 @@ void Switch::RemoveConnection(Connection* con, Pin* pin, bool IsInput)
 
 }
 
+bool Switch::fullconnected()
+{
+	if(m_OutputPin.get_isC())
+		return true;
+	else return false;
+}
+
 Connection** Switch::GetConnections(int& N)
 {
 	N = ConnectionsCount;
 	return ConnectionsList;
 }
+
+
+void Switch::change_status()
+{
+	if(m_OutputPin.getStatus()==HIGH)
+		m_OutputPin.setStatus(LOW);
+	else
+		m_OutputPin.setStatus(HIGH);
+}
+
 
 Switch :: ~Switch()
 {

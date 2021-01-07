@@ -38,11 +38,11 @@ void LED::setInputPinStatus(int n, STATUS s)
 
 bool LED::is_comp(int &x, int &y,int&n,bool b)
 {
-	if(m_GfxInfo.x1<x && m_GfxInfo.x2>x && m_GfxInfo.y1<y && m_GfxInfo.y2>y)
+	if(InsideMe(x,y))
 		{
 			if(b==false)
 			{
-				if(!m_InputPin.get_isC())
+				if(!m_InputPin.get_isC()  &&  n==1)
 				{
 					x=m_GfxInfo.x1;
 					y=m_GfxInfo.y1+48;
@@ -68,6 +68,15 @@ void LED::RemoveConnection(Connection* con, Pin*, bool IsInput)
 {
 	con = NULL;
 	m_InputPin.set_isc(false);
+	m_InputPin.setStatus(LOW);
+}
+
+bool LED::fullconnected()
+{
+	if(m_InputPin.get_isC()==true)
+		return true;
+	else
+		return false;
 }
 
 Connection** LED :: GetConnections(int& N)

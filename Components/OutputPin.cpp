@@ -46,3 +46,11 @@ bool OutputPin::can_connected()
 	else
 		return false;
 }
+
+
+bool OutputPin::get_isC()
+{
+	if(m_Conn>0)
+		return true;
+	else return false;
+}

@@ -47,6 +47,7 @@ public:
 	Component* GetClickedComponent(int x, int y);
 
 	void Simulate(); //Operate all of the components
+	bool fullyconnected();
 
 	//Gets a pointer to Input / Output Object
 	Output* GetOutput();

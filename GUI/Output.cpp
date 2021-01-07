@@ -351,13 +351,26 @@ void Output::DrawXOR3(GraphicsInfo r_GfxInfo, bool selected) const
 }
 
 
-void Output::DrawSWITCH(GraphicsInfo r_GfxInfo, bool selected) const
+void Output::DrawSWITCHon(GraphicsInfo r_GfxInfo, bool selected) const
 {
 	string GateImage;
 	if(selected)	//use image in the highlighted case
 		GateImage="Images\\Gates\\Hilighted\\switch_on.jpg";
 	else  
 		GateImage = "Images\\Gates\\Normal\\switch_on.jpg";
+
+	//Draw SWITCH at Gfx_Info (1st corner)
+	//Set the Image Width & Height by AND2 Image Parameter in UI_Info
+	pWind->DrawImage(GateImage, r_GfxInfo.x1, r_GfxInfo.y1, UI.AND2_Width, UI.AND2_Height);
+}
+
+void Output::DrawSWITCHoff(GraphicsInfo r_GfxInfo, bool selected) const
+{
+	string GateImage;
+	if(selected)	//use image in the highlighted case
+		GateImage="Images\\Gates\\Hilighted\\switch_off.jpg";
+	else  
+		GateImage = "Images\\Gates\\Normal\\switch_off.jpg";
 
 	//Draw SWITCH at Gfx_Info (1st corner)
 	//Set the Image Width & Height by AND2 Image Parameter in UI_Info

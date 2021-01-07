@@ -6,7 +6,6 @@
 class Switch:public Component
 {
 	OutputPin m_OutputPin;
-
 	Connection** ConnectionsList;
 	int ConnectionsCount;
 public:
@@ -26,6 +25,9 @@ public:
 	void AddConnection(Connection* con);
 	void RemoveConnection(Connection* con, Pin*, bool IsInput);
 	virtual Connection** GetConnections(int& N);
+	virtual bool fullconnected ();
+	virtual void change_status();
+
 
 	virtual ActionType getactiontype();
 	~Switch();

@@ -10,8 +10,6 @@ Connection::Connection(const GraphicsInfo &r_GfxInfo, Component *pS,Component *p
 	SrcPin=pS->getSourcePin();
 	DstPin=pD->getDestPin(Pin);
 	SrcPin->ConnectTo(this);
-	//c=DstCmpnt->T_connected();
-
 	SrcCmpnt->AddConnection(this);
 	DstCmpnt->AddConnection(this);
 	
@@ -64,15 +62,16 @@ bool Connection::is_comp(int& x,int& y,int&n, bool b)
 	{
 		if(!(SrcPin->can_connected()))
 			return false;
+		return InsideMe(x,y);
 	}
-	if(m_GfxInfo.x1<x&& m_GfxInfo.x1+((m_GfxInfo.x2-m_GfxInfo.x1)/4)>x && m_GfxInfo.y1-1.5<y && m_GfxInfo.y1+1.5>y)
-		return true;
-	else if (m_GfxInfo.x1+((m_GfxInfo.x2-m_GfxInfo.x1)/4)-1.5<x && m_GfxInfo.x1+((m_GfxInfo.x2-m_GfxInfo.x1)/4)+1.5>x && m_GfxInfo.y1<y && m_GfxInfo.y1>y)
-		return true;
-	else if (m_GfxInfo.x1+((m_GfxInfo.x2-m_GfxInfo.x1)/4)<x && m_GfxInfo.x2>x && m_GfxInfo.y2-1.5<y && m_GfxInfo.y2+1.5>y)
-		return true;
-	else
-		return false;
+
+	else return false;
+}
+
+
+bool Connection::fullconnected()
+{
+	return true;
 }
 
 bool Connection::InsideMe(int x, int y)

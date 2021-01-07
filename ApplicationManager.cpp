@@ -26,6 +26,7 @@
 #include "Actions\ADD_CONNECTION.h"
 #include "Actions\AddLable.h"
 #include "Actions\EditLabel.h"
+#include "Actions\Simulation.h"
 
 ApplicationManager::ApplicationManager()
 {
@@ -175,6 +176,10 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new SimulateMode(this);
 			break;
 
+		case Change_Switch:
+			pAct = new Simulation(this);
+			break;
+
 		case DSN_MODE:
 			pAct = new DesignMode(this);
 			break;
@@ -195,32 +200,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 void ApplicationManager::UpdateInterface()
 {
 	OutputInterface->ClearDrawingArea();
-	int min1=0;
-	int min2=1000;
-	int n;
-		for(int i=0; i<CompCount; i++)
-		{
-			for(int k=0; k<CompCount; k++)
-			{
-				if(CompList[k]->get_graphicinfo().x1>min1 && CompList[k]->get_graphicinfo().x1<min2 )
-				{
-						min2=CompList[k]->get_graphicinfo().x1;
-						n=k;
-				}
-
-			}
-			for(int q=0; q<CompCount; q++)
-			{
-				if(CompList[q]->get_graphicinfo().x1==min2)
-				{
-					CompList[q]->Operate();
-					
-				}
-			}
-			min1=CompList[n]->get_graphicinfo().x1;
-			min2=1000;
-
-		}
+	
 		for(int i=0; i<CompCount; i++){
 			CompList[i]->Draw(OutputInterface);
 			if(CompList[i]->getLabel() != ""){
@@ -250,9 +230,46 @@ Component* ApplicationManager::GetClickedComponent(int x, int y)
 
 void ApplicationManager::Simulate()
 {
-	for (int i = 0; i < CompCount; i++)
-		CompList[i]->Operate();
+	int min1=0;
+	int min2=1000;
+	int n;
+		for(int i=0; i<CompCount; i++)
+		{
+			for(int k=0; k<CompCount; k++)
+			{
+				if(CompList[k]->get_graphicinfo().x1>min1 && CompList[k]->get_graphicinfo().x1<min2 )
+				{
+						min2=CompList[k]->get_graphicinfo().x1;
+						n=k;
+				}
 
+			}
+			for(int q=0; q<CompCount; q++)
+			{
+				if(CompList[q]->get_graphicinfo().x1==min2)
+				{
+					CompList[q]->Operate();
+					
+				}
+			}
+			min1=CompList[n]->get_graphicinfo().x1;
+			min2=1000;
+
+		}
+
+}
+
+///////////////////////////////////////////////////////////////////
+
+bool ApplicationManager::fullyconnected()
+{
+	for (int i=0; i<CompCount ;i++)
+	{
+		if(!CompList[i]->fullconnected())
+			return false;
+	}
+
+	return true;
 }
 
 ////////////////////////////////////////////////////////////////////

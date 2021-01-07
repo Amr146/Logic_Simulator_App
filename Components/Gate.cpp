@@ -21,7 +21,7 @@ Gate::Gate(int r_Inputs, int r_FanOut):m_OutputPin(r_FanOut)
 
 bool Gate::is_comp(int &x, int &y,int&n,bool b)
 {
-	if(m_GfxInfo.x1<x && m_GfxInfo.x2>x && m_GfxInfo.y1<y && m_GfxInfo.y2>y)
+	if(InsideMe(x,y))
 		{
 			if(b==true)
 			{
@@ -38,7 +38,7 @@ bool Gate::is_comp(int &x, int &y,int&n,bool b)
 				x=m_GfxInfo.x1;
 				if(m_Inputs==1)
 				{
-					if (!m_InputPins[0].get_isC())
+					if (!m_InputPins[0].get_isC()  &&  n==1)
 					{
 						y = m_GfxInfo.y1 + 25;
 						m_InputPins[0].set_isc(true);
@@ -52,14 +52,14 @@ bool Gate::is_comp(int &x, int &y,int&n,bool b)
 				if(m_Inputs==2)
 				
 				{
-					if(!m_InputPins[0].get_isC())
+					if(!m_InputPins[0].get_isC() &&  n==1)
 					{
 						y=m_GfxInfo.y1+13;
 						m_InputPins[0].set_isc(true);
 						InputCount++;
 						n = 1;
 					}
-					else if(!m_InputPins[1].get_isC())
+					else if(!m_InputPins[1].get_isC() &&  n==2)
 					{
 						y=m_GfxInfo.y2-13;
 						m_InputPins[1].set_isc(true);
@@ -71,21 +71,21 @@ bool Gate::is_comp(int &x, int &y,int&n,bool b)
 				}
 				if(m_Inputs==3)
 				{
-					if(!m_InputPins[0].get_isC())
+					if(!m_InputPins[0].get_isC()  &&  n==1)
 					{
 						y=m_GfxInfo.y1+10;
 						m_InputPins[0].set_isc(true);
 						InputCount++;
 						n=1;
 					}
-					else if(!m_InputPins[1].get_isC())
+					else if(!m_InputPins[1].get_isC() &&  n==2)
 					{
 						y=m_GfxInfo.y1+25;
 						m_InputPins[1].set_isc(true);
 						InputCount++;
 						n=2;
 					}
-					else if(!m_InputPins[2].get_isC())
+					else if(!m_InputPins[2].get_isC() &&  n==3)
 					{
 						y=m_GfxInfo.y2-10;
 						m_InputPins[2].set_isc(true);
@@ -102,6 +102,19 @@ bool Gate::is_comp(int &x, int &y,int&n,bool b)
 		}
 	else
 		return false;
+}
+
+bool Gate::fullconnected()
+{
+	for(int i=0; i<m_Inputs; i++)
+	{
+		if(m_InputPins[i].get_isC()==false)
+			return false;
+	}
+	if(m_OutputPin.get_isC()==false)
+		return false;
+
+	return true;
 }
 
 OutputPin* Gate::getSourcePin()
@@ -134,11 +147,14 @@ void Gate :: RemoveConnection(Connection* con, Pin* pin, bool IsInput)
 					if (&m_InputPins[i] == pin)
 					{
 						m_InputPins[i].set_isc(false);
+						m_InputPins[i].setStatus(LOW);
 						InputCount--;
 					}
 				}
 			else
+
 				m_OutputPin.DisconnectFrom(con);
+
 			break;
 		}
 	}

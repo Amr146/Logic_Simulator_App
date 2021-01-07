@@ -19,6 +19,8 @@ public:
 
 	virtual void setInputPinStatus(int n, STATUS s);
 
+	virtual bool fullconnected ();
+
 	virtual bool is_comp(int&,int&,int&,bool);
 	OutputPin* getSourcePin();
 	InputPin* getDestPin(int);

@@ -14,6 +14,12 @@ bool Component :: InsideMe(int x, int y)
 		return false;
 }
 
+void Component::change_status()
+{
+
+}
+
+
 void Component::AddConnection(Connection* con)
 {
 	
