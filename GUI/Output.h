@@ -68,7 +68,7 @@ public:
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc
 
 	// Draws Connection
-	void DrawConnection(GraphicsInfo r_GfxInfo, bool selected = false) const;
+	void DrawConnection(GraphicsInfo r_GfxInfo, bool selected = false , bool s=false) const;
 	
 	void PrintMsg(string msg) const;	//Print a message on Status bar
 

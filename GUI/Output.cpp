@@ -406,13 +406,15 @@ void Output::DrawLEDon(GraphicsInfo r_GfxInfo, bool selected) const
 
 
 
-void Output::DrawConnection(GraphicsInfo r_GfxInfo, bool selected) const
+void Output::DrawConnection(GraphicsInfo r_GfxInfo, bool selected , bool s) const
 {
 	//TODO: Add code to draw connection		======================================>>>>>>>>>>>>>>>>>>>>>>>>>>>>>		DONE
-	
+
 	if(selected)	//use connection in the highlighted case
 		pWind->SetPen(UI.SelectColor,3);
-	else  
+	else if(s)
+		pWind->SetPen(GREEN,3);
+	else
 		pWind->SetPen(UI.DrawColor,3);
 
 

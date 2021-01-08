@@ -38,7 +38,7 @@ bool Gate::is_comp(int &x, int &y,int&n,bool b)
 				x=m_GfxInfo.x1;
 				if(m_Inputs==1)
 				{
-					if (!m_InputPins[0].get_isC()  &&  n==1)
+					if (!m_InputPins[0].get_isC()  &&   n==1)
 					{
 						y = m_GfxInfo.y1 + 25;
 						m_InputPins[0].set_isc(true);
@@ -71,7 +71,7 @@ bool Gate::is_comp(int &x, int &y,int&n,bool b)
 				}
 				if(m_Inputs==3)
 				{
-					if(!m_InputPins[0].get_isC()  &&  n==1)
+					if(!m_InputPins[0].get_isC() &&  n==1)
 					{
 						y=m_GfxInfo.y1+10;
 						m_InputPins[0].set_isc(true);
@@ -142,7 +142,7 @@ void Gate :: RemoveConnection(Connection* con, Pin* pin, bool IsInput)
 
 			ConnectionsCount--;
 			if (IsInput)
-				for (int i = 0; i < InputCount; i++)
+				for (int i = 0; i < m_Inputs; i++)
 				{
 					if (&m_InputPins[i] == pin)
 					{

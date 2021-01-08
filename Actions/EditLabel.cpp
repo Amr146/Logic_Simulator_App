@@ -80,6 +80,10 @@ void EditLabel::Execute()
 		pIn->GetPointClicked(x, y);
 		target = pManager->GetClickedComponent(x, y);			//	The New Dst. Component
 
+		pOut->PrintMsg("Enter the InputPin's Number : ");
+		string b;
+		b=pIn->GetSrting(pOut);
+		n_DstPin=stoi(b);
 		if(!pManager->is_com(x,y,k,n_DstPin, false) )
 		{
 			pOut->ClearStatusBar();

@@ -42,7 +42,7 @@ bool LED::is_comp(int &x, int &y,int&n,bool b)
 		{
 			if(b==false)
 			{
-				if(!m_InputPin.get_isC()  &&  n==1)
+				if(!m_InputPin.get_isC()&&  n==1)
 				{
 					x=m_GfxInfo.x1;
 					y=m_GfxInfo.y1+48;
