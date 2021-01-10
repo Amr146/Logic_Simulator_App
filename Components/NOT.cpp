@@ -53,3 +53,15 @@ ActionType NOT:: getactiontype()
 	return ADD_INV;
 }
 
+//writes the component information in the save file
+void NOT::Save(ofstream& saveFile)
+{
+	saveFile << Type_INV << "\t" << getID() << "\t" << getLabel() << "\t" << m_GfxInfo.x1 << "\t" << m_GfxInfo.y1 << endl;
+}
+
+//Loads the component information
+void NOT::Load(string lbl, int id)
+{
+	setLabel(lbl);
+	setID(id);
+}

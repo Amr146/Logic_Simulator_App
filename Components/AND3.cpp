@@ -53,3 +53,16 @@ ActionType AND3:: getactiontype()
 {
 	return ADD_AND_GATE_3;
 }
+
+//writes the component information in the save file
+void AND3::Save(ofstream& saveFile)
+{
+	saveFile << Type_AND3 << "\t" << getID() << "\t" << getLabel() << "\t" << m_GfxInfo.x1 << "\t" << m_GfxInfo.y1 << endl;
+}
+
+//Loads the component information
+void AND3::Load(string lbl, int id)
+{
+	setLabel(lbl);
+	setID(id);
+}

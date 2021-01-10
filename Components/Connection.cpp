@@ -12,7 +12,7 @@ Connection::Connection(const GraphicsInfo &r_GfxInfo, Component *pS,Component *p
 	SrcPin->ConnectTo(this);
 	SrcCmpnt->AddConnection(this);
 	DstCmpnt->AddConnection(this);
-	
+	setID(0);
 }
 
 void Connection::setSourcePin(OutputPin *pSrcPin)
@@ -114,6 +114,18 @@ Component*	Connection::GetDstCmpnt(){
 
 GraphicsInfo* Connection::getGfxInfo(){
 	return &m_GfxInfo;
+}
+
+//writes the component information in the save file
+void Connection::Save(ofstream& saveFile)
+{
+	saveFile << SrcCmpnt->getID() << "\t" << DstCmpnt->getID() << "\t" << n_DstPin << endl;
+}
+
+//Loads the component information
+void Connection::Load(string lbl, int id)
+{
+
 }
 
 Connection :: ~Connection()

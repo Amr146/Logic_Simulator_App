@@ -58,3 +58,16 @@ ActionType XOR2:: getactiontype()
 {
 	return ADD_XOR_GATE_2;
 }
+
+//writes the component information in the save file
+void XOR2::Save(ofstream& saveFile)
+{
+	saveFile << Type_XOR2 << "\t" << getID() << "\t" << getLabel() << "\t" << m_GfxInfo.x1 << "\t" << m_GfxInfo.y1 << endl;
+}
+
+//Loads the component information
+void XOR2::Load(string lbl, int id)
+{
+	setLabel(lbl);
+	setID(id);
+}

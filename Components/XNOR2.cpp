@@ -57,3 +57,16 @@ ActionType XNOR2:: getactiontype()
 {
 	return ADD_XNOR_GATE_2;
 }
+
+//writes the component information in the save file
+void XNOR2::Save(ofstream& saveFile)
+{
+	saveFile << Type_XNOR2 << "\t" << getID() << "\t" << getLabel() << "\t" << m_GfxInfo.x1 << "\t" << m_GfxInfo.y1 << endl;
+}
+
+//Loads the component information
+void XNOR2::Load(string lbl, int id)
+{
+	setLabel(lbl);
+	setID(id);
+}

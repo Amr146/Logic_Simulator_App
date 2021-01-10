@@ -123,6 +123,25 @@ enum CompMenuItem
 	ITM_CMP_CNT
 };
 
+
+enum CompType
+{
+	Type_Buff,
+	Type_INV,
+	Type_AND2,
+	Type_OR2,
+	Type_NAND2,
+	Type_NOR2,
+	Type_XOR2,
+	Type_XNOR2,
+	Type_AND3,
+	Type_NOR3,
+	Type_XOR3,
+	Type_Switch,
+	Type_LED,
+	Type_Connection
+};
+
 enum SimMenuItem //The items of the simulation menu (you should add more items)
 {
 	//Note: Items are ordered here as they appear in menu

@@ -53,3 +53,18 @@ ActionType NOR2:: getactiontype()
 {
 	return ADD_NOR_GATE_2;
 }
+
+
+//gets the requared info to save the gate
+//writes the component information in the save file
+void NOR2::Save(ofstream& saveFile)
+{
+	saveFile << Type_NOR2 << "\t" << getID() << "\t" << getLabel() << "\t" << m_GfxInfo.x1 << "\t" << m_GfxInfo.y1 << endl;
+}
+
+//Loads the component information
+void NOR2::Load(string lbl, int id)
+{
+	setLabel(lbl);
+	setID(id);
+}

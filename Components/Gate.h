@@ -20,8 +20,6 @@ protected:
 	OutputPin m_OutputPin;	//The Gate output pin
 	int m_Inputs;		//No. of input pins of that Gate.
 
-	int InputCount;
-
 	Connection** ConnectionsList;
 	int ConnectionsCount;
 	

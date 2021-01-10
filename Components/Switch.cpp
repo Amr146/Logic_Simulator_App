@@ -6,6 +6,7 @@ Switch::Switch(const GraphicsInfo &r_GfxInfo, int r_FanOut):Component(r_GfxInfo)
 	m_OutputPin.setStatus(LOW);
 	ConnectionsList = new Connection * [r_FanOut];
 	ConnectionsCount = 0;
+	setID(0);
 }
 
 void Switch::Operate()
@@ -16,9 +17,9 @@ void Switch::Draw(Output* pOut)
 {
 	//Call output class and pass gate drawing info to it.
 	if(m_OutputPin.getStatus()==HIGH)
-		pOut->DrawSWITCHon(m_GfxInfo);
+		pOut->DrawSWITCHon(m_GfxInfo,IsSelected);
 	else 
-		pOut->DrawSWITCHoff(m_GfxInfo);
+		pOut->DrawSWITCHoff(m_GfxInfo, IsSelected);
 	
 	
 }
@@ -38,7 +39,7 @@ void Switch::setInputPinStatus(int n, STATUS s)
 
 bool Switch::is_comp(int &x, int &y,int&n,bool b)
 {
-	if(m_GfxInfo.x1<x && m_GfxInfo.x2>x && m_GfxInfo.y1<y && m_GfxInfo.y2>y)
+	if(InsideMe(x, y))
 		{
 			if(b==true)
 			{
@@ -118,6 +119,19 @@ void Switch::change_status()
 		m_OutputPin.setStatus(HIGH);
 }
 
+
+//writes the component information in the save file
+void Switch::Save(ofstream& saveFile)
+{
+	saveFile << Type_Switch << "\t" << getID() << "\t" << getLabel() << "\t" << m_GfxInfo.x1 << "\t" << m_GfxInfo.y1 << endl;
+}
+
+//Loads the component information
+void Switch::Load(string lbl, int id)
+{
+	setLabel(lbl);
+	setID(id);
+}
 
 Switch :: ~Switch()
 {

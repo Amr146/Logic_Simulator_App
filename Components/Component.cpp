@@ -61,5 +61,16 @@ void Component::setLabel(string lbl){
 	m_Label = lbl;
 }
 
+void Component :: setID(int id)
+{
+	ID = id;
+}
+int Component :: getID()
+{
+	return ID;
+}
+
+
+
 Component::~Component()
 {}

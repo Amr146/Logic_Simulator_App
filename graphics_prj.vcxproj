@@ -17,7 +17,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -150,9 +150,12 @@
     <ClCompile Include="Actions\DesignMode.cpp" />
     <ClCompile Include="Actions\DisplayCompBar.cpp" />
     <ClCompile Include="Actions\EditLabel.cpp" />
+    <ClCompile Include="Actions\Exit.cpp" />
+    <ClCompile Include="Actions\Load.cpp" />
     <ClCompile Include="Actions\Next.cpp" />
     <ClCompile Include="Actions\Paste.cpp" />
     <ClCompile Include="Actions\Previous.cpp" />
+    <ClCompile Include="Actions\Save.cpp" />
     <ClCompile Include="Actions\Select.cpp" />
     <ClCompile Include="Actions\Simulation.cpp" />
     <ClCompile Include="Actions\SimulateMode.cpp" />
@@ -239,6 +242,9 @@
     <ClInclude Include="Actions\DesignMode.h" />
     <ClInclude Include="Actions\DisplayCompBar.h" />
     <ClInclude Include="Actions\EditLabel.h" />
+    <ClInclude Include="Actions\Exit.h" />
+    <ClInclude Include="Actions\Load.h" />
+    <ClInclude Include="Actions\Save.h" />
     <ClInclude Include="Actions\Simulation.h" />
     <ClInclude Include="Actions\Next.h" />
     <ClInclude Include="Actions\Paste.h" />

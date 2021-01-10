@@ -16,11 +16,12 @@ class ApplicationManager
 private:
 	Component* Selected; //poiter to the selected component
 	Component* Clipboard; //poiter to the component in the clipboard
-	Mode ClipboardMode;
-	ActionType ClipboardType;
+	Mode ClipboardMode;  //ClipboardMode
+	ActionType ClipboardType; //Clipboard Component type
 	int CompCount;		//Actual number of Components
+	int ConnectionCount; //Number of Connections
 	Component* CompList[MaxCompCount];	//List of all Components (Array of pointers)
-
+	int LastID; //Last ID given to a component
 	Output* OutputInterface; //pointer to the Output Clase Interface
 	Input* InputInterface; //pointer to the Input Clase Interface
 
@@ -38,6 +39,7 @@ public:
 	
 	void SetSelected(Component*); //Sets Selected pointer
 	void deletecomp(Component*);  //deletes a component from the componentslist 
+	void deleteAll();  //deletes all components from the componentslist
 	Component* GetSelected();  //gets Selected pointer
 
 	void SetClipboard(Component*, Mode, ActionType); //Sets Clipboard pointer
@@ -59,6 +61,10 @@ public:
 	Component* get_Component(int n);
 
 	bool is_com(int&, int&, int& ,int&, bool);
+
+	int CompCountWithoutConn(); //Returns the count of all components but connections
+
+	void SaveAll(ofstream&); //Calls the save function of all components
 
 	//destructor
 	~ApplicationManager();

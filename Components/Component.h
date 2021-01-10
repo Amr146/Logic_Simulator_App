@@ -5,12 +5,14 @@
 #include "..\GUI\Output.h"
 #include "InputPin.h"
 #include "OutputPin.h"
+#include <fstream>
 
 //Base class for classes Gate, Switch, and LED.
 class Component
 {
 private:
 	string m_Label;
+	int ID;
 protected:
 	Output* pout;
 	bool IsSelected;
@@ -49,6 +51,12 @@ public:
 
 	string getLabel();
 	void setLabel(string lbl);
+
+	void setID(int id);
+	int getID();
+
+	virtual void Save(ofstream& saveFile) = 0; //writes the component information in the save file
+	virtual void Load(string lbl, int id) = 0; //Loads the component information
 
 	Component();	
 	

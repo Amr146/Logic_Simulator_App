@@ -3,6 +3,7 @@ LED::LED(const GraphicsInfo& r_GfxInfo):Component(r_GfxInfo)
 {
 	m_InputPin.setComponent(this);
 	IsSelected = false;
+	setID(0);
 }
 
 void LED::Operate()
@@ -98,4 +99,18 @@ InputPin* LED::getDestPin(int)
 ActionType LED::getactiontype()
 {
 	return ADD_LED;
+}
+
+
+//writes the component information in the save file
+void LED::Save(ofstream& saveFile)
+{
+	saveFile << Type_LED << "\t" << getID() << "\t" << getLabel() << "\t" << m_GfxInfo.x1 << "\t" << m_GfxInfo.y1 << endl;
+}
+
+//Loads the component information
+void LED::Load(string lbl, int id)
+{
+	setLabel(lbl);
+	setID(id);
 }

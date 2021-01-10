@@ -65,3 +65,16 @@ ActionType XOR3:: getactiontype()
 {
 	return ADD_XOR_GATE_3;
 }
+
+//writes the component information in the save file
+void XOR3::Save(ofstream& saveFile)
+{
+	saveFile << Type_XOR3 << "\t" << getID() << "\t" << getLabel() << "\t" << m_GfxInfo.x1 << "\t" << m_GfxInfo.y1 << endl;
+}
+
+//Loads the component information
+void XOR3::Load(string lbl, int id)
+{
+	setLabel(lbl);
+	setID(id);
+}

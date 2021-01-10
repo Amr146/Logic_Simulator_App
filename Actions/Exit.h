@@ -1,13 +1,9 @@
 #pragma once
 #include "Action.h"
-#include "..\Components\Component.h"
-class Select : public Action
+class Exit : public Action
 {
-private:
-	int x, y;
-	Component* target;
 public:
-	Select(ApplicationManager* pApp);
+	Exit(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 
 	//Execute action
@@ -18,7 +14,6 @@ public:
 
 	//To redo this action
 	virtual void Redo();
-
-	~Select();
+	~Exit();
 };
 

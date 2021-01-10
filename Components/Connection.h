@@ -44,5 +44,7 @@ public:
 
 	GraphicsInfo* getGfxInfo();
 
+	virtual void Save(ofstream& saveFile); //writes the component information in the save file
+	virtual void Load(string lbl, int id); //Loads the component information
 	~Connection();
 };

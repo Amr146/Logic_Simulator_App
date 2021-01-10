@@ -53,3 +53,17 @@ ActionType NAND2::getactiontype()
 {
 	return ADD_NAND_GATE_2;
 }
+
+
+//writes the component information in the save file
+void NAND2::Save(ofstream& saveFile)
+{
+	saveFile << Type_NAND2 << "\t" << getID() << "\t" << getLabel() << "\t" << m_GfxInfo.x1 << "\t" << m_GfxInfo.y1 << endl;
+}
+
+//Loads the component information
+void NAND2::Load(string lbl, int id)
+{
+	setLabel(lbl);
+	setID(id);
+}

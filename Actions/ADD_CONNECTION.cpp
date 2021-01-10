@@ -34,8 +34,20 @@ void AddConnection::ReadActionParameters()
 	}
 	pOut->PrintMsg("Enter the InputPin's Number : ");
 	string s;
-	s=pIn->GetSrting(pOut);
-	n_DstPin=stoi(s);
+	while (true)
+	{
+		s = pIn->GetSrting(pOut);
+		if (isdigit(s[0]) != false)
+		{
+			n_DstPin = stoi(s);
+			break;
+		}
+		else
+		{
+			pOut->PrintMsg("Please Enter a valid number for the Input");
+			continue;
+		}
+	}
 	if(!pManager->is_com(x2,y2,k,n_DstPin, false) )
 	{
 		pOut->ClearStatusBar();

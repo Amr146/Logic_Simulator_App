@@ -27,11 +27,15 @@
 #include "Actions\AddLable.h"
 #include "Actions\EditLabel.h"
 #include "Actions\Simulation.h"
+#include "Actions\Save.h"
+#include "Actions\Load.h"
+#include "Actions\Exit.h"
 
 ApplicationManager::ApplicationManager()
 {
 	CompCount = 0;
-
+	ConnectionCount = 0;
+	LastID = 0;
 	Selected = NULL;
 
 	for(int i=0; i<MaxCompCount; i++)
@@ -44,13 +48,27 @@ ApplicationManager::ApplicationManager()
 ////////////////////////////////////////////////////////////////////
 void ApplicationManager::AddComponent(Component* pComp)
 {
-	CompList[CompCount++] = pComp;		
+	CompList[CompCount++] = pComp;	
+	if (pComp == dynamic_cast<Connection*>(pComp))
+		ConnectionCount++;
+	else
+	{
+		if (pComp->getID() != 0)
+			LastID = pComp->getID();
+		else
+			pComp->setID(++LastID);
+	}
 }
 ////////////////////////////////////////////////////////////////////
 
 Component* ApplicationManager::get_Component(int n)
 {
-	return CompList[n];
+	for (int i = 0; i < CompCount; i++)
+	{
+		if (CompList[i]->getID() == n)
+			return CompList[i];
+	}
+	return NULL;
 }
 
 bool ApplicationManager::is_com(int &x, int &y ,int &k, int&pin , bool b)
@@ -59,7 +77,7 @@ bool ApplicationManager::is_com(int &x, int &y ,int &k, int&pin , bool b)
 	{
 		if( CompList[i]->is_comp(x,y,pin,b))
 		{
-			k=i;
+			k= CompList[i]->getID();
 			return true;
 		}
 	}
@@ -176,6 +194,14 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			pAct = new SimulateMode(this);
 			break;
 
+		case SAVE:
+			pAct = new Save(this);
+			break;
+
+		case LOAD:
+			pAct = new Load(this);
+			break;
+				
 		case Change_Switch:
 			pAct = new Simulation(this);
 			break;
@@ -185,7 +211,7 @@ void ApplicationManager::ExecuteAction(ActionType ActType)
 			break;
 
 		case EXIT:
-			///TODO: create ExitAction here
+			pAct = new Exit(this);
 			break;
 	}
 	if(pAct)
@@ -284,16 +310,29 @@ void ApplicationManager:: deletecomp(Component* target)
 	{
 		if (CompList[i] == target)
 		{
+			if (target == dynamic_cast<Connection*>(target))
+				ConnectionCount--;
 			CompList[i] = CompList[CompCount-1];
 			CompList[CompCount - 1] = target;
 			delete CompList[CompCount - 1];
 			CompList[CompCount - 1] = NULL;
 			
 		    CompCount--;
-			
+
 			break;
 		}
 	}
+}
+////////////////////////////////////////////////////////////////////
+void ApplicationManager :: deleteAll()
+{
+	for (int i = 0; i < CompCount; i++)
+	{
+		SetSelected(CompList[i]);
+		ExecuteAction(DEL);
+		i--;
+	}
+	LastID = 0;
 }
 ////////////////////////////////////////////////////////////////////
 Component* ApplicationManager::GetSelected()
@@ -316,6 +355,11 @@ Component* ApplicationManager :: GetClipboard(Mode &m, ActionType &AT)
 	return Clipboard;
 }
 ////////////////////////////////////////////////////////////////////
+int ApplicationManager :: CompCountWithoutConn()
+{
+	return (CompCount - ConnectionCount);
+}
+////////////////////////////////////////////////////////////////////
 Input* ApplicationManager::GetInput()
 {
 	return InputInterface;
@@ -328,16 +372,31 @@ Output* ApplicationManager::GetOutput()
 }
 
 ////////////////////////////////////////////////////////////////////
-
-ApplicationManager::~ApplicationManager()
+void ApplicationManager::SaveAll(ofstream& saveFile)
 {
 	for (int i = 0; i < CompCount; i++)
 	{
-		//delete CompList[i];
-		SetSelected(CompList[i]);
-		ExecuteAction(DEL);
-		i--;
+		if (CompList[i] != dynamic_cast<Connection*>(CompList[i]))
+		{
+			CompList[i]->Save(saveFile);
+		}
 	}
+	saveFile << "Connections" <<endl;
+	for (int i = 0; i < CompCount; i++)
+	{
+		if (CompList[i] == dynamic_cast<Connection*>(CompList[i]))
+		{
+			CompList[i]->Save(saveFile);
+		}
+	}
+	saveFile << "-1" << endl;
+}
+////////////////////////////////////////////////////////////////////
+
+
+ApplicationManager::~ApplicationManager()
+{
+	deleteAll();
 	delete OutputInterface;
 	delete InputInterface;
 	

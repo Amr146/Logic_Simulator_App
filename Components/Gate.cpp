@@ -15,7 +15,7 @@ Gate::Gate(int r_Inputs, int r_FanOut):m_OutputPin(r_FanOut)
 		m_InputPins[i].setComponent(this);
 	ConnectionsList = new Connection * [r_Inputs + r_FanOut];
 	ConnectionsCount = 0;
-	InputCount = 0;
+	setID(0);
 }
 
 
@@ -42,7 +42,6 @@ bool Gate::is_comp(int &x, int &y,int&n,bool b)
 					{
 						y = m_GfxInfo.y1 + 25;
 						m_InputPins[0].set_isc(true);
-						InputCount++;
 						n = 1;
 					}
 					else 
@@ -56,14 +55,12 @@ bool Gate::is_comp(int &x, int &y,int&n,bool b)
 					{
 						y=m_GfxInfo.y1+13;
 						m_InputPins[0].set_isc(true);
-						InputCount++;
 						n = 1;
 					}
 					else if(!m_InputPins[1].get_isC() &&  n==2)
 					{
 						y=m_GfxInfo.y2-13;
 						m_InputPins[1].set_isc(true);
-						InputCount++;
 						n = 2;
 					}
 					else 
@@ -75,21 +72,18 @@ bool Gate::is_comp(int &x, int &y,int&n,bool b)
 					{
 						y=m_GfxInfo.y1+10;
 						m_InputPins[0].set_isc(true);
-						InputCount++;
 						n=1;
 					}
 					else if(!m_InputPins[1].get_isC() &&  n==2)
 					{
 						y=m_GfxInfo.y1+25;
 						m_InputPins[1].set_isc(true);
-						InputCount++;
 						n=2;
 					}
 					else if(!m_InputPins[2].get_isC() &&  n==3)
 					{
 						y=m_GfxInfo.y2-10;
 						m_InputPins[2].set_isc(true);
-						InputCount++;
 						n=3;
 					}
 					else 
@@ -148,7 +142,6 @@ void Gate :: RemoveConnection(Connection* con, Pin* pin, bool IsInput)
 					{
 						m_InputPins[i].set_isc(false);
 						m_InputPins[i].setStatus(LOW);
-						InputCount--;
 					}
 				}
 			else

@@ -52,3 +52,16 @@ ActionType Buff:: getactiontype()
 {
 	return ADD_Buff;
 }
+
+//writes the component information in the save file
+void Buff::Save(ofstream& saveFile)
+{
+	saveFile << Type_Buff << "\t" << getID() << "\t" << getLabel() << "\t" << m_GfxInfo.x1 << "\t" << m_GfxInfo.y1 << endl;
+}
+
+//Loads the component information
+void Buff::Load(string lbl, int id)
+{
+	setLabel(lbl);
+	setID(id);
+}

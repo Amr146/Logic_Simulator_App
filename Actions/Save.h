@@ -1,13 +1,13 @@
 #pragma once
 #include "Action.h"
-#include "..\Components\Component.h"
-class Select : public Action
+#include<string>
+class Save : public Action
 {
 private:
-	int x, y;
-	Component* target;
+	std :: string fileName;
+	int CompCount;
 public:
-	Select(ApplicationManager* pApp);
+	Save(ApplicationManager* pApp);
 	virtual void ReadActionParameters();
 
 	//Execute action
@@ -19,6 +19,6 @@ public:
 	//To redo this action
 	virtual void Redo();
 
-	~Select();
+	~Save();
 };
 
