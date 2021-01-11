@@ -374,6 +374,7 @@ Output* ApplicationManager::GetOutput()
 ////////////////////////////////////////////////////////////////////
 void ApplicationManager::SaveAll(ofstream& saveFile)
 {
+	saveFile << CompCountWithoutConn() << endl;
 	for (int i = 0; i < CompCount; i++)
 	{
 		if (CompList[i] != dynamic_cast<Connection*>(CompList[i]))

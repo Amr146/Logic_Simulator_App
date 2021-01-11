@@ -19,20 +19,23 @@ void Exit::Execute()
 
 	std::string c;
 	pOut->PrintMsg("Do you want to save the Current Circuit, please enter either 'y' or 'n'");
-	c = pIn->GetSrting(pOut);
 	while (true)
+	{
+		c = pIn->GetSrting(pOut); //Get user input 
+		//check user input
 		if (c[0] == 'y')
 		{
-			pManager->ExecuteAction(SAVE);
+			pManager->ExecuteAction(SAVE); //Save the current circuit
 			break;
 		}
-		else if (c[0] != 'n')
+		else if (c[0] != 'n') // if neither y nor n
 		{
 			pOut->PrintMsg("Do you want to save the Current Circuit, please enter either 'y' or 'n'");
-			continue;
+			continue; //continue until the user enter either y or n
 		}
-		else
-			break;
+		else // if input is n
+			break; //don't save
+	}
 }
 
 //To undo this action

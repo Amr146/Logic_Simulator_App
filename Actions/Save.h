@@ -5,7 +5,6 @@ class Save : public Action
 {
 private:
 	std :: string fileName;
-	int CompCount;
 public:
 	Save(ApplicationManager* pApp);
 	virtual void ReadActionParameters();

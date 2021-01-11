@@ -56,31 +56,36 @@ void Load::Execute()
 		{
 			std::string c;
 			pOut->PrintMsg("Do you want to save the Current Circuit, please enter either 'y' or 'n'");
-			c = pIn->GetSrting(pOut);
 			while (true)
+			{
+				c = pIn->GetSrting(pOut); //Get user input 
+				//check user input
 				if (c[0] == 'y')
 				{
-					pManager->ExecuteAction(SAVE);
+					pManager->ExecuteAction(SAVE);  //Save the current circuit
 					break;
 				}
-				else if (c[0] != 'n')
+				else if (c[0] != 'n') // if neither y nor n
 				{
 					pOut->PrintMsg("Do you want to save the Current Circuit, please enter either 'y' or 'n'");
-					continue;
+					continue; //continue until the user enter either y or n
 				}
-				else
-					break;
-			pManager->deleteAll();
+				else // if input is n
+					break; //don't save
+			}
+			pManager->deleteAll(); //delete the current circuit 
 		}
 		GraphicsInfo GInfo;
 		int CT;
 		std::string CompLabel;
 		int ID;
 		Component* pA = NULL;
-		Savefile >> CompCount;
 		char temp[10];
 		std::string X1;
 		std::string Y1;
+
+		Savefile >> CompCount; //get the number of components in the save file
+
 		for (int i = 0; i < CompCount; i++)
 		{
 			GInfo.x1 = GInfo.y1 = 0;
@@ -89,8 +94,10 @@ void Load::Execute()
 			Savefile >> CT >> ID >> CompLabel;
 			Savefile.getline(temp, 10, '\n');
 
+			//this part for handling the case in which the saved component didn't have a label
+
 			bool flag = false;
-			for (int i = 1; i < strlen(temp); i++)
+			for (int i = 1; i < strlen(temp); i++) 
 			{
 				if (flag)
 					Y1.push_back(temp[i]);
@@ -111,10 +118,11 @@ void Load::Execute()
 				CompLabel = "";
 			}
 
+			//optimizing the graphical info
 			GInfo.x2 = GInfo.x1 + UI.AND2_Width;
 			GInfo.y2 = GInfo.y1 + UI.AND2_Height;
 
-			switch (CT)
+			switch (CT) //switch case to check for the component type
 			{
 			case Type_AND2:
 				pA = new AND2(GInfo, AND2_FANOUT);
@@ -209,8 +217,9 @@ void Load::Execute()
 
 		while (!Savefile.eof())
 		{
+			//Read the information of the connections
 			Savefile >> SrcID >> DestID >> pin;
-			if (SrcID == -1)
+			if (SrcID == -1) //check if the end of the savefile have been reached
 				break;
 			Src = pManager->get_Component(SrcID);  //pointer to the Source component
 			Dest = pManager->get_Component(DestID);  //poiter to the Destination component
@@ -227,7 +236,7 @@ void Load::Execute()
 			pA = new Connection(GInfo, Src, Dest, pin);
 			pManager->AddComponent(pA);
 		}
-		Savefile.close();
+		Savefile.close(); //closing the savefile
 		pOut->PrintMsg("Load Completed");
 	}
 	else

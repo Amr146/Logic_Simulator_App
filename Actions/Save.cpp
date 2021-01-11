@@ -1,6 +1,7 @@
 #include "Save.h"
 #include "../ApplicationManager.h"
 #include<fstream>
+#include<direct.h>
 Save::Save(ApplicationManager* pApp) :Action(pApp)
 {
 
@@ -18,8 +19,6 @@ void Save::ReadActionParameters()
 	fileName = pIn->GetSrting(pOut);
 	//Clear Status Bar
 	pOut->ClearStatusBar();
-
-	CompCount =pManager->CompCountWithoutConn();
 }
 
 //Execute action
@@ -28,12 +27,26 @@ void Save::Execute()
 	//Get a Pointer to the Output Interface
 	Output* pOut = pManager->GetOutput();
 
-	ReadActionParameters();
-	ofstream Savefile("Save\\" + fileName + ".txt");
-	Savefile << CompCount << endl;
-	pManager->SaveAll (Savefile);
-	Savefile.close();
-	pOut->PrintMsg("Save Completed");
+	ReadActionParameters(); //Reading the parameters for the action 
+	ofstream Savefile("Save\\" + fileName + ".txt"); //creating or overwritting the save file
+	if (Savefile.is_open()) //check if the savefile was created successfully 
+	{
+		pManager->SaveAll(Savefile); //calling the saving function in application manager
+		Savefile.close(); //closing the savefile
+		pOut->PrintMsg("Save Completed");
+	}
+	else
+	{
+		if (mkdir("Save") == 0) //create the Save Directory and check if created successfully
+		{
+			ofstream Savefile("Save\\" + fileName + ".txt"); //creating the save file
+			pManager->SaveAll(Savefile); //calling the saving function in application manager
+			Savefile.close(); //closing the savefile
+			pOut->PrintMsg("Save Completed");
+		}
+		else
+			pOut->PrintMsg("Save Faild");
+	}
 }
 
 //To undo this action
