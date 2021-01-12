@@ -42,7 +42,8 @@ string Input::GetSrting(Output *pOut)
 			pWind->FlushMouseQueue();
 			return "";
 		}
-		else
+
+		else if(c != '\t')
 		{
 			s.push_back(c);  //add the pressed character to the string variable.
 		}

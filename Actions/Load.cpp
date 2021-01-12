@@ -80,7 +80,7 @@ void Load::Execute()
 		std::string CompLabel;
 		int ID;
 		Component* pA = NULL;
-		char temp[10];
+		string temp;
 		std::string X1;
 		std::string Y1;
 
@@ -89,22 +89,28 @@ void Load::Execute()
 		for (int i = 0; i < CompCount; i++)
 		{
 			GInfo.x1 = GInfo.y1 = 0;
-			X1 = Y1 = "";
+			X1 = Y1 = CompLabel = "";
 			//Read the information of the components
-			Savefile >> CT >> ID >> CompLabel;
-			Savefile.getline(temp, 10, '\n');
+			Savefile >> CT >> ID;
+			std::getline(Savefile, temp);
 
 			//this part for handling the case in which the saved component didn't have a label
+			//and also handling labels with spaces
 
-			bool flag = false;
-			for (int i = 1; i < strlen(temp); i++) 
+			bool flag1 = false;
+			bool flag2 = false;
+			for (int i = 1; i < temp.length(); i++)
 			{
-				if (flag)
+				if (flag2) 
 					Y1.push_back(temp[i]);
+				else if (temp[i] != '\t' && !flag1)
+					CompLabel.push_back(temp[i]);
 				else if (temp[i] != '\t')
 					X1.push_back(temp[i]);
+				else if (flag1)
+					flag2 = true;
 				else
-					flag = true;
+					flag1 = true;
 			}
 
 			GInfo.x1 = stoi(X1);
