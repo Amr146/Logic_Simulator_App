@@ -24,8 +24,6 @@ void EditLabel::Execute()
 	ReadActionParameters();
 
 	if(target != NULL){					//	The User Clicked A Component
-		pManager->SetSelected(target);	//	Mark This Component As Selected
-		target->SetIsSelected(true);
 		
 		if(target->getLabel() != ""){	//	This Component Already Has A Label
 			
@@ -50,6 +48,10 @@ void EditLabel::Execute()
 		STATUS s;
 		Connection* Conn = dynamic_cast<Connection*>(target);	//	The Connection That The User Clicked
 		GraphicsInfo *GfxInfo = Conn->getGfxInfo();				//	The Info Of The Connection
+		OutputPin* srcPinOld = Conn->getSourcePin();
+		InputPin* dstPinOld = Conn->getDestPin();
+		Component* srcCompOld = Conn->GetSrcCmpnt();
+		Component* dstCompOld = Conn->GetDstCmpnt();
 		
 		//	Edit The SrcPin
 		pOut->ClearStatusBar();
@@ -58,18 +60,17 @@ void EditLabel::Execute()
 		pIn->GetPointClicked(x, y);
 		target = pManager->GetClickedComponent(x, y);			//	The New Src. Component
 		
-		if(!pManager->is_com(x,y,i,n_DstPin,true))
+		if(!pManager->is_com(x,y,i,n_DstPin,true) || target == srcCompOld)
 		{
-			pOut->ClearStatusBar();
-			target = Conn->GetSrcCmpnt();
-			s = (STATUS)target->GetOutPinStatus();
+			s = (STATUS)srcCompOld->GetOutPinStatus();
 		}else{
 			s = (STATUS)target->GetOutPinStatus();
 			GfxInfo->x1 = x;				//	The X Coord. Of The New SrcPin
 			GfxInfo->y1 = y;				//	The Y Coord. Of The New SrcPin
+			srcPinOld->DisconnectFrom(Conn);
 			OutputPin* srcPin = target->getSourcePin();
+			srcPin->ConnectTo(Conn);
 			Conn->setSourcePin(srcPin);
-			Conn->setSrcComp(target);
 			srcPin->setStatus(s);
 		}
 
@@ -80,11 +81,13 @@ void EditLabel::Execute()
 		pIn->GetPointClicked(x, y);
 		target = pManager->GetClickedComponent(x, y);			//	The New Dst. Component
 
-		pOut->PrintMsg("Enter the InputPin's Number : ");
-		string b;
-		b=pIn->GetSrting(pOut);
-		n_DstPin=stoi(b);
-		if(!pManager->is_com(x,y,k,n_DstPin, false) )
+		if(target != NULL && target != dstCompOld){
+			pOut->PrintMsg("Enter the InputPin's Number : ");
+			string b;
+			b=pIn->GetSrting(pOut);
+			n_DstPin=stoi(b);
+		}
+		if(!pManager->is_com(x,y,k,n_DstPin, false) || target == dstCompOld)
 		{
 			pOut->ClearStatusBar();
 		}else{
@@ -97,6 +100,8 @@ void EditLabel::Execute()
 			Conn->setDestPin(NULL);					//<<<<
 			
 			InputPin* DstPin = target->getDestPin(n_DstPin);
+			DstPin->set_isc(true);
+			dstPinOld->set_isc(false);
 			Conn->setDestPin(DstPin);
 			Conn->setDestComp(target);
 			DstPin->setStatus(s);
