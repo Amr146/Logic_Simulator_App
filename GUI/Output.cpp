@@ -172,7 +172,7 @@ void Output::CreateSimulationToolBar() const
 {
 	UI.AppMode = SIMULATION;	//Simulation Mode
 	string DesignMenuItemImages[ITM_SIM_CNT], bckgrnd = "images\\Menu\\backGround.jpg";
-	DesignMenuItemImages[ITM_SIM] = "images\\Menu\\Menu_SIM_MODE.jpg";
+	DesignMenuItemImages[ITM_SIM] = "images\\Menu\\Menu_Change_Switch.jpg";
 	DesignMenuItemImages[ITM_DSN_MODE] = "images\\Menu\\Menu_DSN_MODE.jpg";
 	DesignMenuItemImages[ITM_TRUTH] = "images\\Menu\\Menu_TRUTH.jpg";
 
