@@ -94,7 +94,7 @@ void Output::CreateDesignToolBar() const
 	//You can draw the tool bar icons in any way you want.
 
 	//First prepare List of images for each menu item
-	string DesignMenuItemImages[ITM_DSN_CNT];
+	string DesignMenuItemImages[ITM_DSN_CNT], bckgrnd = "images\\Menu\\backGround.jpg";
 	DesignMenuItemImages[ITM_ADD] = "images\\Menu\\Menu_ADD.jpg";
 	DesignMenuItemImages[ITM_CONNECTION] = "images\\Menu\\Menu_CONNECTION.jpg";
 	DesignMenuItemImages[ITM_LABEL] = "images\\Menu\\Menu_Label.jpg";
@@ -146,9 +146,7 @@ void Output::CreateDesignToolBar() const
 			pWind->DrawLine(UI.ToolItemWidth, UI.ToolBarHeight, UI.ToolItemWidth, 0);
 			for (int i = 1; (i + ITM_PREVIOUS) < ITM_Switch; i++)
 				pWind->DrawImage(CompMenuItemImages[i + ITM_PREVIOUS], i * UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
-			pWind->SetPen(WHITE, 1);
-			pWind->SetBrush(WHITE);
-			pWind->DrawRectangle(4 * UI.ToolItemWidth, 0, ITM_Switch * UI.ToolItemWidth, UI.ToolBarHeight);
+			pWind->DrawImage(bckgrnd,320, 0, UI.width - 240, UI.ToolBarHeight);
 		}
 		pWind->SetPen(RED, 6);
 		pWind->DrawLine(UI.ToolItemWidth * 9, UI.ToolBarHeight, UI.ToolItemWidth * 9, 0);
@@ -173,7 +171,7 @@ void Output::CreateDesignToolBar() const
 void Output::CreateSimulationToolBar() const
 {
 	UI.AppMode = SIMULATION;	//Simulation Mode
-	string DesignMenuItemImages[ITM_SIM_CNT];
+	string DesignMenuItemImages[ITM_SIM_CNT], bckgrnd = "images\\Menu\\backGround.jpg";
 	DesignMenuItemImages[ITM_SIM] = "images\\Menu\\Menu_SIM_MODE.jpg";
 	DesignMenuItemImages[ITM_DSN_MODE] = "images\\Menu\\Menu_DSN_MODE.jpg";
 	DesignMenuItemImages[ITM_TRUTH] = "images\\Menu\\Menu_TRUTH.jpg";
@@ -182,10 +180,7 @@ void Output::CreateSimulationToolBar() const
 	for(int i=0; i<ITM_SIM_CNT; i++)
 		pWind->DrawImage(DesignMenuItemImages[i],i*UI.ToolItemWidth,0,UI.ToolItemWidth, UI.ToolBarHeight);
 
-	pWind->SetPen(WHITE, 1);
-	pWind->SetBrush(WHITE);
-	pWind->DrawRectangle(ITM_SIM_CNT * UI.ToolItemWidth, 0, UI.width, UI.ToolBarHeight);
-
+	pWind->DrawImage(bckgrnd,240, 0, UI.width, UI.ToolBarHeight);
 	//Draw a line under the toolbar
 	pWind->SetPen(RED,3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
